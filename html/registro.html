@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/registro.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Registro</title>
+</head>
+<header>
+  <nav class="navbar navbar-expand-lg colorMenu fixed-top">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+                <li class="nav-item linksMenuCentralUsuario ">
+                    <a class="nav-link active fs-4 " style="color: #DBDBEB;" aria-current="page" href="../index.html">Inicio</a>
+                </li>
+                <li class="nav-item linksMenuCentralUsuario ">
+                    <a class="nav-link fs-4" style="color: #DBDBEB;" href="./iniciarSesion.html">Iniciar sesión</a>
+                </li>
+                <li class="nav-item linksMenuCentralUsuario ">
+                    <a class="nav-link fs-4" style="color: #DBDBEB;" href="./registro.html">Registro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  </header>
+<body>
+    <form class="form">
+        <h2 class="form_tittle">Crea una Cuenta</h2>
+
+        <div class="form_container">
+            <div class="form_group form-floating mb-3">
+                <input type="text" class="form-control" id="inputUser" name="username" placeholder=" ">
+                <div id="msgErrorName" class="form-text text-danger"> <small>Campo Nombre vacio</small> </div>
+                <label class="form_label" for="floatingInput">Nombre de Usuario</label>
+                <span class="form_line"></span>
+                
+            </div>
+            <div class="form_group form-floating mb-3">
+                <input type="text" class="form-control" id="mailUser" name="usermail" placeholder=" ">
+                <div id="msgErrorMail" class="form-text text-danger"> <small>Campo Mail vacio</small> </div>
+                <label class="form_label" for="floatingInput">Mail</label>
+                <span class="form_line"></span>
+                
+            </div>
+            <div class="form_group form-floating mb-3">
+                <input type="password" class="form-control" id="passUser" name="pass" placeholder=" ">
+                <div id="msgErrorPass" class="form-text text-danger"> <small>Campo Contraseña vacio</small> </div>
+                <label for="floatingPassword" class="form_label" >Contraseña</label>
+                <span class="form_line"></span>
+                
+            </div>
+            <div class="form_group form-floating mb-3">
+                <input type="password" class="form-control" id="repeatPassUser" name="repeatPass" placeholder=" ">
+                <div id="msgErrorRepeat" class="form-text text-danger"> <small>Campo Repetir Contraseña vacio</small> </div>
+                <label for="floatingPassword" class="form_label" >Repetir Contraseña</label>
+                <span class="form_line"></span>
+                
+            </div>
+
+            <input type="button" id="createUser" class="form_submit" value="Crear Cuenta">
+
+        </div>
+
+    </form>
+    
+    <script src="/js/arrayDePeliculas.js" ></script>
+    <script src="/js/registro.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+</body>
+</html>
