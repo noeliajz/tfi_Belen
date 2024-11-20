@@ -1,0 +1,297 @@
+
+
+.detFooter {
+    height: 350px;
+    padding-top: 12px;
+    background-color: black;
+    margin-top: auto;
+}
+
+.linksMenuCentralUsuario {
+    text-shadow: 1px 2px 1px #7577CD;
+    ;
+}
+
+.linksMenuCentralUsuario:hover {
+    background: #FF6D02;
+    border-radius: 10px;
+}
+
+.main-color-login{
+    background: #7577CD;
+}
+.colorTextoSobreNosotros{
+    text-shadow: 1px 2px 2px #080957; 
+    color: #FF6D02;
+}
+
+.fondoMainUsuario {
+    background-image: url('https://enterados.pe/wp-content/uploads/2020/12/cine-clasico.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 56px;
+}
+
+.mainVistaUsuario {
+    margin-top: 55px;
+    background: #DBDBEB;
+}
+.mainSobreNosotros{
+    padding-top: 140px;
+}
+
+.fuente-body {
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Comic Neue', cursive;
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Exo', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Lobster', cursive;
+    display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
+
+.recomendaciones {
+    height: 270px;
+    width: 10px;
+}
+
+.recomendacionesListas {
+    height: 270px;
+}
+
+.colorTextoUsuario {
+    color: #080957;
+}
+
+.textoCardsUsuario {
+    color: #1C82AD;
+}
+
+.colorMenu {
+    background: #080957;
+}
+
+.detFooter {
+    background: #FF8303;
+}
+
+.color-botones {
+    background-color: #7577CD;
+}
+
+.estiloPelicula {
+    background: #DBDBEB;
+    padding-top: 200px;
+}
+
+.estiloListaUsuario {
+    padding-top: 180px;
+}
+
+.fondoMainUsuarioLogueado {
+    background:  #DBDBEB;
+}
+
+.linkFooter {
+    text-decoration: none;
+    color: #080957;
+}
+
+/* Código evelin */
+
+.team-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.team-member {
+    margin-bottom: 30px;
+}
+
+.team-member img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-control.error {
+    border: 1px solid red;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control.error {
+    border-color: red;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.form-text {
+    color: red;
+    font-size: 0.875rem;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.float-left {
+    float: left;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+body {
+    background-color: #e6e6fa;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control.error {
+    border-color: red;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.form-text {
+    color: red;
+    font-size: 0.875rem;
+}
+
+ .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+} 
+
+.form-group.error .form-control {
+    border-color: red;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.form-group.error .form-text {
+    color: red;
+    font-size: 0.875rem;
+}
+
+#result.error {
+    color: red;
+    font-size: 0.875rem;
+}
+
+
+.jumbotron {
+    background-image: url("../img/imgpagprin.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.colorTextoPagPrincipal{
+    color: #FF8303;
+}
+
+.cambiar-color-boton{
+    color: #DBDBEB;
+}
+.pagina404{
+    
+    background-image: url("../img/error404.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    
+}
+.colorContenedorLogin{
+    
+    background: #DBDBEB;
+}
+.margenMainLogin{
+    padding-top: 200px;
+}
+.colorBotonLogin{
+    background: #FF8303;
+    color: #FF8303;
+}
+.margenAdmin{
+    padding-top: 78px;
+}
+.estiloMainCarrito{
+    padding-top: 120px;
+}
+#divCardsFecha {
+    overflow-y: auto; /* Para permitir scroll si hay muchas tarjetas */
+    max-height: 80vh; /* Limitar la altura máxima */
+    padding-top: 100px; /* Alinear con el contenido de la izquierda */
+}
