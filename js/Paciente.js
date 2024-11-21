@@ -1,10 +1,10 @@
-import { Persona } from './persona.js'; // Importar la clase Persona correctamente
+// Importar la clase Persona correctamente
+import { Persona } from './persona.js';
 
-class Paciente extends Persona {
+export class Paciente extends Persona {
   static pacientes = []; // Array estático para almacenar todos los pacientes
 
   constructor(id, cuil, nombreCompleto, fechaNacimiento, email, telefono, nroAfiliado) {
-    // Llamar al constructor de la clase base (Persona)
     super(id, cuil, nombreCompleto, fechaNacimiento, email, telefono);
     this.nroAfiliado = nroAfiliado;
 
@@ -19,9 +19,10 @@ class Paciente extends Persona {
     new Paciente(3, '27348147564', 'Carlos Gomez', '1985-11-14', 'carlos.gomez@example.com', '456789123', 'C789');
   }
 
-  // Método estático para renderizar los pacientes en el div con id="divCards"
-  static renderizarPacientes() {
-    const divCards = document.getElementById('divCards');
+  // Método estático para renderizar los pacientes en el div con id="divCardsPacientesPrincipal"
+  static renderizarPacientes(divId) {
+    const divCards = document.getElementById(divId);
+    if (!divCards) return; // Asegúrate de que el div exista antes de continuar
     divCards.innerHTML = ''; // Limpiar contenido previo
 
     Paciente.pacientes.forEach((paciente) => {
@@ -41,12 +42,58 @@ class Paciente extends Persona {
       divCards.appendChild(card);
     });
   }
+
+  // Método estático para buscar un paciente por su CUIL
+  static buscarPaciente(cuil) {
+    // Filtra pacientes por CUIL
+    const paciente = Paciente.pacientes.find(paciente => paciente.cuil === cuil);
+
+    // Limpiar el div antes de mostrar resultados
+    const divCardsFecha = document.getElementById('divCardsFecha');
+    if (!divCardsFecha) return; // Asegúrate de que el div exista antes de continuar
+    divCardsFecha.innerHTML = ''; // Limpiar contenido previo
+
+    if (paciente) {
+      // Crear una tarjeta con el paciente encontrado
+      const card = document.createElement('div');
+      card.classList.add('card', 'm-3');
+      card.style.width = '18rem';
+      card.innerHTML = `
+        <div class="card-body">
+          <h5 class="card-title">${paciente.nombreCompleto}</h5>
+          <p class="card-text"><strong>CUIL:</strong> ${paciente.cuil}</p>
+          <p class="card-text"><strong>Fecha de Nacimiento:</strong> ${paciente.fechaNacimiento}</p>
+          <p class="card-text"><strong>Email:</strong> ${paciente.email}</p>
+          <p class="card-text"><strong>Teléfono:</strong> ${paciente.telefono}</p>
+          <p class="card-text"><strong>Número de Afiliado:</strong> ${paciente.nroAfiliado}</p>
+        </div>
+      `;
+      divCardsFecha.appendChild(card);
+    } else {
+      // Mostrar mensaje si no se encuentra el paciente
+      divCardsFecha.innerHTML = '<p>No se encontró un paciente con ese CUIL.</p>';
+    }
+  }
 }
 
 // Inicializar pacientes predefinidos al cargar la clase
 Paciente.inicializarPacientes();
 
-// Renderizar pacientes en el div con id="divCards" cuando el documento esté listo
+// Asegurarse de que el código JavaScript se ejecute después de que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
-  Paciente.renderizarPacientes();
+  // Renderizar pacientes en el div correcto
+  Paciente.renderizarPacientes('divCardsPacientesPrincipal');
+
+  // Evento para el botón de búsqueda
+  const buttonBuscarCuil = document.getElementById('buttonBuscarCuil');
+  if (buttonBuscarCuil) {
+    buttonBuscarCuil.addEventListener('click', () => {
+      const cuil = document.getElementById('idInputBuscarCuil').value.trim(); // Asegúrate de quitar espacios innecesarios
+      if (cuil) {
+        Paciente.buscarPaciente(cuil);
+      } else {
+        alert('Por favor ingresa un CUIL válido.');
+      }
+    });
+  }
 });
