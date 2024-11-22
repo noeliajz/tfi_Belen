@@ -1,5 +1,5 @@
 // Importar la clase Persona correctamente
-import { Persona } from './persona.js';
+import { Persona } from './Persona.js';
 
 export class Paciente extends Persona {
   static pacientes = []; // Array estático para almacenar todos los pacientes
