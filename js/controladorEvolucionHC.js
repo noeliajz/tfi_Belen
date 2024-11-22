@@ -22,8 +22,8 @@ class HistoriaClinica {
 
   // Método estático para renderizar las historias clínicas en el div con id="divHistorias"
   static renderizarHistorias() {
-    const divHistorias = document.getElementById('divHistorias');
-    divHistorias.innerHTML = ''; // Limpiar contenido previo
+    const divCardsFecha = document.getElementById('divCardsFecha');
+    divCardsFecha.innerHTML = ''; // Limpiar contenido previo
 
     // Mostrar cada historia clínica en una tarjeta
     HistoriaClinica.historiasClinicas.forEach((historia) => {
@@ -38,7 +38,7 @@ class HistoriaClinica {
           <p class="card-text"><strong>Fecha de Creación:</strong> ${historia.fechaCreacion}</p>
         </div>
       `;
-      divHistorias.appendChild(card);
+      divCardsFecha.appendChild(card);
     });
   }
 
@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const paciente2 = new Paciente(2, '27328147563', 'Julieta Gerez', '1992-03-23', 'julieta.gerez@example.com', '987654321', 'B456');
 
   // Crear algunas historias clínicas iniciales
-  const diagnostico1 = new Diagnostico(1, 'D001', 'Diagnóstico de hipertensión');
+  /* const diagnostico1 = new Diagnostico(1, 'D001', 'Diagnóstico de hipertensión');
   const diagnostico2 = new Diagnostico(2, 'D002', 'Diagnóstico de diabetes');
   
   new HistoriaClinica(1, '2024-11-20', 'Evolución1', diagnostico1.idDiagnostico, 'Receta1', diagnostico1, paciente1);
   new HistoriaClinica(2, '2024-11-21', 'Evolución2', diagnostico2.idDiagnostico, 'Receta2', diagnostico2, paciente2);
-
+ */
   // Renderizar las historias clínicas en el div
   HistoriaClinica.renderizarHistorias();
 
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const buttonAgregarDiagnostico = document.getElementById('buttonNuevoDiagnostico');
   buttonAgregarDiagnostico.addEventListener('click', () => {
     const descripcionDiagnostico = document.getElementById('idInputNuevoDiagnostico').value; // Valor del input
-    const nroHC = 3; // Número de la nueva historia clínica
+     const nroHC = 3;  // Número de la nueva historia clínica
     const fechaCreacion = new Date().toLocaleDateString(); // Fecha actual
     const codigoDiagnostico = 'D003'; // Código del nuevo diagnóstico
     const paciente = paciente1; // Seleccionar el paciente al que se le agrega el diagnóstico
