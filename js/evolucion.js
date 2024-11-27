@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Botón encontrado');
     buttonAgregarEvolucion.addEventListener('click', () => {
       console.log('Botón presionado');
-      const dniPaciente = document.getElementById('idInputBuscarCuil').value.trim();
+      const dniPaciente = document.getElementById('idInputBuscarDNI').value.trim();
       const idDiagnostico = document.getElementById('idInputIdDiagnostico').value.trim();
       const id = document.getElementById('idInputIdDoctor').value.trim();
       const informe = document.getElementById('idInputInforme').value.trim();
