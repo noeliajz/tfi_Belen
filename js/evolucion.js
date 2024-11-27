@@ -26,8 +26,8 @@ export class Evolucion {
 let evoluciones = [];
 
 const medicos = [
-  new Medico(1, 'Dr. Juan Pérez', 'Cardiología'),
-  new Medico(2, 'Dra. Ana Gómez', 'Neurología'),
+  new Medico(1,  'Cardiología','Dr. Juan Pérez'),
+  new Medico(2,  'Neurología', 'Dra. Ana Gómez'),
 ];
 
 const diagnosticos = [
@@ -44,6 +44,29 @@ function buscarMedicoPorId(id) {
 function buscarDiagnosticoPorId(idDiagnostico) {
   return diagnosticos.find((diagnostico) => diagnostico.idDiagnostico === parseInt(idDiagnostico));
 }
+//muestra las evoluciones en una card
+function renderizarEvoluciones() {
+  const divCardEvoluciones = document.getElementById('divCardEvoluciones');
+  divCardEvoluciones.innerHTML = ''; // Limpiar contenido anterior
+
+  if (evoluciones.length === 0) {
+      divCardEvoluciones.innerHTML = '<p>No hay evoluciones registradas.</p>';
+  } else {
+      evoluciones.forEach((evolucion, index) => {
+          const card = `
+              <div class="card m-3" style="width: 18rem;">
+                  <div class="card-body">
+                      <h5 class="card-title">Evolución ${index + 1}</h5>
+                      <p class="card-text"><strong>Fecha y Hora:</strong> ${evolucion.fechaHora}</p>
+                      <p class="card-text"><strong>Informe:</strong> ${evolucion.informe}</p>
+                      <p class="card-text"><strong>Id de Médico:</strong> ${evolucion.medico.id} - ${evolucion.medico.nombreCompleto}</p>
+                      <p class="card-text"><strong>Diagnóstico:</strong> ${evolucion.diagnostico.codigoDescripcion} - ${evolucion.diagnostico.descripcion}</p>
+                  </div>
+              </div>`;
+          divCardEvoluciones.innerHTML += card;
+      });
+  }
+}
 
 // Agregar una nueva evolución al array
 export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
@@ -51,15 +74,13 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   const diagnostico = buscarDiagnosticoPorId(idDiagnostico);
 
   if (!medico) {
-    alert('No se encontró el médico con el ID ingresado.');
-    console.error('Médico no encontrado:', id);
-    return;
+      alert('No se encontró el médico con el ID ingresado.');
+      return;
   }
 
   if (!diagnostico) {
-    alert('No se encontró el diagnóstico con el ID ingresado.');
-    console.error('Diagnóstico no encontrado:', idDiagnostico);
-    return;
+      alert('No se encontró el diagnóstico con el ID ingresado.');
+      return;
   }
 
   const fechaHora = new Date().toISOString();
@@ -68,9 +89,13 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
 
   const nuevaEvolucion = new Evolucion(fechaHora, textoLibre, plantilla, medico, diagnostico, informe);
   evoluciones.push(nuevaEvolucion);
-  nuevaEvolucion.mostrarDetalles();
+  
   alert('Evolución creada exitosamente.');
+  
+  // Renderizar las evoluciones
+  renderizarEvoluciones();
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttonAgregarEvolucion = document.getElementById('buttonAgregarEvolucion');
