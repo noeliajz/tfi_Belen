@@ -14,10 +14,10 @@ export class Medico extends Persona {
   }
 
   // Método estático para inicializar médicos predefinidos
-  static inicializarMedicos() {
-    new Medico(1, '27358147562', 'Martina Gerez', '1990-05-12', 'martina.gerez@example.com', '123456712', '1234', 'Dermatología');
-    new Medico(2, '27328147563', 'Juliio Gomez', '1992-03-23', 'julio.gerez@example.com', '987654311', '5678', 'Cardiología');
-    new Medico(3, '27348147564', 'Cesar Gomez', '1985-11-14', 'cesar.gomez@example.com', '456789144', '91011', 'Neurología');
+   static inicializarMedicos() {
+    new Medico(4, '27358147562', 'Martina Gerez', '1990-05-12', 'martina.gerez@example.com', '123456712', '1234', 'Dermatología');
+    new Medico(5, '27328147563', 'Juliio Gomez', '1992-03-23', 'julio.gerez@example.com', '987654311', '5678', 'Cardiología');
+    new Medico(6, '27348147564', 'Cesar Gomez', '1985-11-14', 'cesar.gomez@example.com', '456789144', '91011', 'Neurología');
   }
 
   // Método estático para buscar un médico por matrícula
