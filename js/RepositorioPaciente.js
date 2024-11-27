@@ -4,19 +4,19 @@ import { Persona } from './Persona.js';
 export class Paciente extends Persona {
   static pacientes = []; // Array estático para almacenar todos los pacientes
 
-  constructor(id, cuil, nombreCompleto, fechaNacimiento, email, telefono, nroAfiliado) {
-    super(id, cuil, nombreCompleto, fechaNacimiento, email, telefono);
+  constructor(id, cuil, nombreCompleto, fechaNacimiento, email, telefono, nroAfiliado, dni) {
+    super(id, cuil, nombreCompleto, fechaNacimiento, email, telefono, dni);
     this.nroAfiliado = nroAfiliado;
 
     // Agregar este paciente al array estático
     Paciente.pacientes.push(this);
   }
 
-  // Método estático para inicializar pacientes predefinidos
+  //INSTANCIA: Método estático para inicializar pacientes predefinidos
   static inicializarPacientes() {
-    new Paciente(1, '27358147562', 'Belen Gerez', '1990-05-12', 'belen.gerez@example.com', '123456789', 'A123');
-    new Paciente(2, '27328147563', 'Julieta Gerez', '1992-03-23', 'julieta.gerez@example.com', '987654321', 'B456');
-    new Paciente(3, '27348147564', 'Carlos Gomez', '1985-11-14', 'carlos.gomez@example.com', '456789123', 'C789');
+    new Paciente(1, '27358147562', 'Belen Gerez', '1990-05-12', 'belen.gerez@example.com', '123456789', 'A123', '43203765');
+    new Paciente(2, '27328147563', 'Julieta Gerez', '1992-03-23', 'julieta.gerez@example.com', '987654321', 'B456', '43203674');
+    new Paciente(3, '27348147564', 'Carlos Gomez', '1985-11-14', 'carlos.gomez@example.com', '456789123', 'C789', '43203766');
   }
 
   // Método estático para renderizar los pacientes en el div con id="divCardsPacientesPrincipal"
@@ -44,9 +44,9 @@ export class Paciente extends Persona {
   }
 
   // Método estático para buscar un paciente por su CUIL
-  static buscarPaciente(cuil) {
+  static buscarPaciente(dni) {
     // Filtra pacientes por CUIL
-    const paciente = Paciente.pacientes.find(paciente => paciente.cuil === cuil);
+    const paciente = Paciente.pacientes.find(paciente => paciente.dni === dni);
 
     // Limpiar el div antes de mostrar resultados
     const divCardsFecha = document.getElementById('divCardsFecha');
@@ -61,7 +61,7 @@ export class Paciente extends Persona {
       card.innerHTML = `
         <div class="card-body">
           <h5 class="card-title">${paciente.nombreCompleto}</h5>
-          <p class="card-text"><strong>CUIL:</strong> ${paciente.cuil}</p>
+          <p class="card-text"><strong>DNI:</strong> ${paciente.dni}</p>
           <p class="card-text"><strong>Fecha de Nacimiento:</strong> ${paciente.fechaNacimiento}</p>
           <p class="card-text"><strong>Email:</strong> ${paciente.email}</p>
           <p class="card-text"><strong>Teléfono:</strong> ${paciente.telefono}</p>
@@ -88,11 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const buttonBuscarCuil = document.getElementById('buttonBuscarCuil');
   if (buttonBuscarCuil) {
     buttonBuscarCuil.addEventListener('click', () => {
-      const cuil = document.getElementById('idInputBuscarCuil').value.trim(); // Asegúrate de quitar espacios innecesarios
-      if (cuil) {
-        Paciente.buscarPaciente(cuil);
+      const dni = document.getElementById('idInputBuscarCuil').value.trim(); // Asegúrate de quitar espacios innecesarios
+      if (dni) {
+        Paciente.buscarPaciente(dni);
       } else {
-        alert('Por favor ingresa un CUIL válido.');
+        alert('Por favor ingresa un DNI válido.');
       }
     });
   }
