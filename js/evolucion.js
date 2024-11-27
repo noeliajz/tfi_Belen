@@ -9,18 +9,15 @@ export class Evolucion {
     this.plantilla = plantilla;
     this.medico = medico;
     this.diagnostico = diagnostico;
-    this.informe = informe; // Informe de la evolución
+    this.informe = informe;
   }
 
-  // Mostrar detalles de la evolución
   mostrarDetalles() {
     console.log(`Fecha y Hora: ${this.fechaHora}`);
     console.log(`Texto Libre: ${this.textoLibre}`);
     console.log(`Plantilla: ${this.plantilla}`);
-    console.log(`Médico: ${this.medico.nombre} (${this.medico.especialidad})`);
-    console.log(
-      `Diagnóstico: ${this.diagnostico.codigoDescripcion} - ${this.diagnostico.descripcion}`
-    );
+    console.log(`Médico: ${this.medico.id })`);
+    console.log(`Diagnóstico: ${this.diagnostico.codigoDescripcion} - ${this.diagnostico.descripcion}`);
     console.log(`Informe: ${this.informe}`);
   }
 }
@@ -38,7 +35,7 @@ const diagnosticos = [
   new Diagnostico(202, 'D002', 'Cefalea tensional'),
 ];
 
-// Buscar médico por ID
+// Buscar médico por ID (revisar atributo correcto)
 function buscarMedicoPorId(id) {
   return medicos.find((medico) => medico.id === parseInt(id));
 }
@@ -49,12 +46,19 @@ function buscarDiagnosticoPorId(idDiagnostico) {
 }
 
 // Agregar una nueva evolución al array
-export function agregarEvolucion(dniPaciente, idDiagnostico, idMedico, informe) {
-  const medico = buscarMedicoPorId(idMedico);
+export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
+  const medico = buscarMedicoPorId(id);
   const diagnostico = buscarDiagnosticoPorId(idDiagnostico);
 
-  if (!medico || !diagnostico) {
-    alert('No se encontró el médico o el diagnóstico con los datos ingresados.');
+  if (!medico) {
+    alert('No se encontró el médico con el ID ingresado.');
+    console.error('Médico no encontrado:', id);
+    return;
+  }
+
+  if (!diagnostico) {
+    alert('No se encontró el diagnóstico con el ID ingresado.');
+    console.error('Diagnóstico no encontrado:', idDiagnostico);
     return;
   }
 
@@ -62,11 +66,8 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, idMedico, informe) 
   const textoLibre = `Evolución del paciente con DNI ${dniPaciente}.`;
   const plantilla = 'Plantilla General';
 
-  // Crear una nueva evolución con el informe
   const nuevaEvolucion = new Evolucion(fechaHora, textoLibre, plantilla, medico, diagnostico, informe);
-
   evoluciones.push(nuevaEvolucion);
-
   nuevaEvolucion.mostrarDetalles();
   alert('Evolución creada exitosamente.');
 }
@@ -79,11 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Botón presionado');
       const dniPaciente = document.getElementById('idInputBuscarCuil').value.trim();
       const idDiagnostico = document.getElementById('idInputIdDiagnostico').value.trim();
-      const idMedico = document.getElementById('idInputIdDoctor').value.trim();
+      const id = document.getElementById('idInputIdDoctor').value.trim();
       const informe = document.getElementById('idInputInforme').value.trim();
 
-      if (dniPaciente && idDiagnostico && idMedico && informe) {
-        agregarEvolucion(dniPaciente, idDiagnostico, idMedico, informe);
+      if (dniPaciente && idDiagnostico && id && informe) {
+        agregarEvolucion(dniPaciente, idDiagnostico, id, informe);
       } else {
         alert('Por favor, completa todos los campos antes de continuar.');
       }
