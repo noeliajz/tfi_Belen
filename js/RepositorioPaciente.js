@@ -71,7 +71,7 @@ export class Paciente extends Persona {
       divCardsFecha.appendChild(card);
     } else {
       // Mostrar mensaje si no se encuentra el paciente
-      divCardsFecha.innerHTML = '<p>No se encontró un paciente con ese CUIL.</p>';
+      divCardsFecha.innerHTML = '<p>No se encontró un paciente con ese DNI.</p>';
     }
   }
 }
