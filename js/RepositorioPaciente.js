@@ -45,16 +45,15 @@ export class Paciente extends Persona {
 
   // Método estático para buscar un paciente por su CUIL
   static buscarPaciente(dni) {
-    // Filtra pacientes por CUIL
     const paciente = Paciente.pacientes.find(paciente => paciente.dni === dni);
-
-    // Limpiar el div antes de mostrar resultados
-    const divCardsFecha = document.getElementById('divCardsFecha');
-    if (!divCardsFecha) return; // Asegúrate de que el div exista antes de continuar
+    
+    // Asegúrate de que el div exista antes de continuar
+    const divCardsFecha = document.getElementById('divCardEvoluciones');
+    if (!divCardsFecha) return; 
+    
     divCardsFecha.innerHTML = ''; // Limpiar contenido previo
-
+  
     if (paciente) {
-      // Crear una tarjeta con el paciente encontrado
       const card = document.createElement('div');
       card.classList.add('card', 'm-3');
       card.style.width = '18rem';
@@ -70,10 +69,10 @@ export class Paciente extends Persona {
       `;
       divCardsFecha.appendChild(card);
     } else {
-      // Mostrar mensaje si no se encuentra el paciente
       divCardsFecha.innerHTML = '<p>No se encontró un paciente con ese DNI.</p>';
     }
   }
+  
 }
 
 // Inicializar pacientes predefinidos al cargar la clase
@@ -81,14 +80,15 @@ Paciente.inicializarPacientes();
 
 // Asegurarse de que el código JavaScript se ejecute después de que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
-  // Renderizar pacientes en el div correcto
+  Paciente.inicializarPacientes();
   Paciente.renderizarPacientes('divCardsPacientesPrincipal');
 
-  // Evento para el botón de búsqueda
-  const buttonBuscarCuil = document.getElementById('buttonBuscarCuil');
-  if (buttonBuscarCuil) {
-    buttonBuscarCuil.addEventListener('click', () => {
-      const dni = document.getElementById('idInputBuscarCuil').value.trim(); // Asegúrate de quitar espacios innecesarios
+  const buttonBuscarDNI = document.getElementById('buttonBuscarDNI');
+  const inputBuscarDNI = document.getElementById('idInputBuscarDNI');
+  
+  if (buttonBuscarDNI && inputBuscarDNI) {
+    buttonBuscarDNI.addEventListener('click', () => {
+      const dni = inputBuscarDNI.value.trim();
       if (dni) {
         Paciente.buscarPaciente(dni);
       } else {
@@ -97,3 +97,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
