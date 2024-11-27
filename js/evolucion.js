@@ -16,7 +16,7 @@ export class Evolucion {
     console.log(`Fecha y Hora: ${this.fechaHora}`);
     console.log(`Texto Libre: ${this.textoLibre}`);
     console.log(`Plantilla: ${this.plantilla}`);
-    console.log(`Médico: ${this.medico.id })`);
+    console.log(`Id de Médico: ${this.medico.id })`);
     console.log(`Diagnóstico: ${this.diagnostico.codigoDescripcion} - ${this.diagnostico.descripcion}`);
     console.log(`Informe: ${this.informe}`);
   }
