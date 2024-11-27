@@ -4,7 +4,7 @@ import { Medicamentos } from './Medicamentos.js';
 import { HistoriaClinica } from './HistoriaClinica.js';
 import { jsPDF } from "jspdf";
 
-class RecetaDigital {
+export class RecetaDigital {
     constructor(fechaHora, dosis, estado, diagnostico, plantilla, medicamento, historiaClinica) {
         // Campos básicos
         this.fechaHora = fechaHora;

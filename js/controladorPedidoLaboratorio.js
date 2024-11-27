@@ -1,5 +1,5 @@
 // Clase PedidoLaboratorio
-class PedidoLaboratorio {
+export class PedidoLaboratorio {
   constructor(fechaHora, tipoAnalisis) {
     this.fechaHora = fechaHora;  // Fecha y hora del pedido
     this.tipoAnalisis = tipoAnalisis;  // Tipo de análisis solicitado
