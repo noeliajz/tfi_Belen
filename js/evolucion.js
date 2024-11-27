@@ -31,8 +31,8 @@ const medicos = [
 ];
 
 const diagnosticos = [
-  new Diagnostico(101, 'D001', 'Hipertensión esencial'),
-  new Diagnostico(202, 'D002', 'Cefalea tensional'),
+  new Diagnostico(1, 'D001', 'Hipertensión esencial'),
+  new Diagnostico(2, 'D002', 'Cefalea tensional'),
 ];
 
 // Buscar médico por ID (revisar atributo correcto)
