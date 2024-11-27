@@ -46,7 +46,7 @@
                           id="idInputBuscarCuil" 
                           class="form-control me-2 m-4" 
                           type="text" 
-                          placeholder="Ingresar CUIL" 
+                          placeholder="Ingresar DNI" 
                           aria-label="Search">
                         
                         <button 
@@ -55,6 +55,25 @@
                           class="btn btn-primary mb-3">
                           Buscar
                         </button>
+                        <input 
+                          name="formularioIdDiagnostico" 
+                          id="idInputIdDiagnostico" 
+                          class="form-control me-2 m-4" 
+                          type="text" 
+                          placeholder="Ingresar ID  de diagnostico" 
+                          aria-label="Search"
+                          >
+                          <button type="button" id="buttonBuscarDiagnostico" class="btn btn-primary mb-3">Buscar diagnóstico</button>
+
+                          <div id="divCardDiagnostico" class="mt-4"></div>
+
+                          <input 
+                          name="formularioDoctor" 
+                          id="idInputIdDoctor" 
+                          class="form-control me-2 m-4" 
+                          type="text" 
+                          placeholder="Ingresar ID de doctor" 
+                          >
                       </form>
                       
                       
@@ -63,9 +82,9 @@
 
 
                     <form>
-                        <input name="search" id="idInputNuevoDiagnostico" class="form-control me-2 m-4" type="text" placeholder="Ingresar diagnóstico" aria-label="Search">
+                        <input name="informe" id="idInputInforme" class="form-control me-2 m-4" type="text" placeholder="Ingresar informe" >
+                        <button type="button" id="buttonAgregarEvolucion" class="btn btn-primary mb-3">Agregar evolucion</button>
 
-                        <button type="button" id="buttonNuevoDiagnostico" class="btn btn-primary mb-3">Nuevo diagnóstico</button>
                     </form>
                 </div>
 
@@ -80,6 +99,7 @@
     </main>
     
     
+      
     
     <footer class="detFooter fs-5 text-center">
         <div class="container-fluid">
@@ -101,8 +121,10 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-     <script type="module" src="/js/controladorEvolucionHC.js"></script>
-     <script type="module" src="/js/Paciente.js"></script>
+     <script type="module" src="/js/controladorClinica.js"></script>
+     <script type="module" src="/js/RepositorioPaciente.js"></script>
+     <script type="module" src="/js/Diagnostico.js"></script>
+     <script type="module" src="/js/evolucion.js"></script>
 
     <script src="https://kit.fontawesome.com/b629b846fa.js" crossorigin="anonymous"></script>
 </body>
