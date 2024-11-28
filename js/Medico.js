@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const idInputBuscarMedico = document.getElementById('idInputBuscarMedico');
   
   // Evento para buscar médico al hacer clic en el botón
-  buttonBuscarMedico.addEventListener('click', () => {
+  /* buttonBuscarMedico.addEventListener('click', () => {
     const matricula = idInputBuscarMedico.value.trim();
     if (matricula) {
       Medico.buscarMedico(matricula);
     } else {
       alert('Por favor, ingrese una matrícula.');
     }
-  });
+  }); */
 });
 
 // Inicializar médicos predefinidos al cargar la clase
