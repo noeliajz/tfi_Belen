@@ -71,13 +71,19 @@ function renderizarEvoluciones() {
   }
 }
 
+
 // Agregar una nueva evolución al array
 export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   const medico = buscarMedicoPorId(id);
   const diagnostico = buscarDiagnosticoPorId(idDiagnostico);
 
-  // Crear un paciente
-  const paciente = new Paciente(dniPaciente, "Nombre del Paciente");  // Asegúrate de que el paciente tenga un nombre completo
+  // Buscar el paciente por DNI
+  const paciente = Paciente.pacientes.find(p => p.dni === dniPaciente);
+
+  if (!paciente) {
+      alert('No se encontró el paciente con el DNI ingresado.');
+      return;
+  }
 
   if (!medico) {
       alert('No se encontró el médico con el ID ingresado.');
@@ -93,7 +99,7 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   const textoLibre = `Evolución del paciente con DNI ${dniPaciente}.`;
   const plantilla = 'Plantilla General';
 
-  // Pasar el paciente correctamente a la evolución
+  // Crear la evolución con el paciente correcto
   const nuevaEvolucion = new Evolucion(fechaHora, textoLibre, plantilla, medico, diagnostico, informe, paciente);
   evoluciones.push(nuevaEvolucion);
 
@@ -102,6 +108,7 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   // Renderizar las evoluciones
   renderizarEvoluciones();
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttonAgregarEvolucion = document.getElementById('buttonAgregarEvolucion');
