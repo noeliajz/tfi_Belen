@@ -16,10 +16,10 @@ export class Evolucion {
   mostrarDetalles() {
     console.log(`Fecha y Hora: ${this.fechaHora}`);
     console.log(`Nombre completo: ${this.paciente.nombreCompleto}`);
+    console.log(`Diagnóstico: ${this.diagnostico.codigoDescripcion} - ${this.diagnostico.descripcion}`);
     console.log(`Texto Libre: ${this.textoLibre}`);
     console.log(`Plantilla: ${this.plantilla}`);
     console.log(`Id de Médico: ${this.medico.id }`);
-    console.log(`Diagnóstico: ${this.diagnostico.codigoDescripcion} - ${this.diagnostico.descripcion}`);
     console.log(`Informe: ${this.informe}`);
   }
 }
@@ -61,10 +61,12 @@ function renderizarEvoluciones() {
                       <h5 class="card-title">Evolución ${index + 1}</h5>
                       <p class="card-text"><strong>Fecha y Hora:</strong> ${evolucion.fechaHora}</p>
                       <p class="card-text"><strong>Nombre Completo:</strong> ${evolucion.paciente ? evolucion.paciente.nombreCompleto : 'Desconocido'} </p>
-                      <p class="card-text"><strong>Informe:</strong> ${evolucion.informe}</p>
-                      <p class="card-text"><strong>Id de Médico:</strong> ${evolucion.medico.id} - ${evolucion.medico.nombreCompleto}</p>
+                      <p class="card-text"><strong>DNI:</strong> ${evolucion.paciente.dni}</p>
                       <p class="card-text"><strong>Diagnóstico:</strong> ${evolucion.diagnostico.codigoDescripcion} - ${evolucion.diagnostico.descripcion}</p>
-                  </div>
+                      <p class="card-text"><strong>Médico:</strong> ${evolucion.medico.id} - ${evolucion.medico.nombreCompleto}</p>
+                      <p class="card-text"><strong>Informe:</strong> ${evolucion.informe}</p>
+
+                      </div>
               </div>`;
           divCardEvoluciones.innerHTML += card;
       });
