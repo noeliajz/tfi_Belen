@@ -1,5 +1,3 @@
-import { Persona } from './Persona.js';
-
 class Persona {
   constructor(id, cuil, nombreCompleto, fechaNacimiento, email, telefono, dni) {
     this.id = id;
@@ -9,15 +7,17 @@ class Persona {
     this.email = email;
     this.telefono = telefono;
     this.dni = dni;
+
   }
 }
 
-class Paciente extends Persona {
+export class Paciente extends Persona {
   static pacientes = []; // Array estático para almacenar todos los pacientes
 
   constructor(id, cuil, nombreCompleto, fechaNacimiento, email, telefono, nroAfiliado, dni) {
     super(id, cuil, nombreCompleto, fechaNacimiento, email, telefono, dni); // Llamada al constructor de Persona
     this.nroAfiliado = nroAfiliado; // Atributo específico de Paciente
+    this.nombreCompleto = nombreCompleto;
 
     // Agregar este paciente al array estático
     Paciente.pacientes.push(this);
