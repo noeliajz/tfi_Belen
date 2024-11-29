@@ -1,22 +1,24 @@
 import { Medico } from './Medico.js'; // Ajusta la ruta según tu estructura
 import { Diagnostico } from './Diagnostico.js'; // Ajusta la ruta según tu estructura
-
+import {Paciente} from './RepositorioPaciente.js'
 // Clase Evolucion
 export class Evolucion {
-  constructor(fechaHora, textoLibre, plantilla, medico, diagnostico, informe) {
+  constructor(fechaHora, textoLibre, plantilla, medico, diagnostico, informe, paciente) {
     this.fechaHora = fechaHora;
     this.textoLibre = textoLibre;
     this.plantilla = plantilla;
     this.medico = medico;
     this.diagnostico = diagnostico;
     this.informe = informe;
+    this.paciente = paciente
   }
 
   mostrarDetalles() {
     console.log(`Fecha y Hora: ${this.fechaHora}`);
+    console.log(`Nombre completo: ${this.paciente.nombreCompleto}`);
     console.log(`Texto Libre: ${this.textoLibre}`);
     console.log(`Plantilla: ${this.plantilla}`);
-    console.log(`Id de Médico: ${this.medico.id })`);
+    console.log(`Id de Médico: ${this.medico.id }`);
     console.log(`Diagnóstico: ${this.diagnostico.codigoDescripcion} - ${this.diagnostico.descripcion}`);
     console.log(`Informe: ${this.informe}`);
   }
@@ -58,6 +60,7 @@ function renderizarEvoluciones() {
                   <div class="card-body">
                       <h5 class="card-title">Evolución ${index + 1}</h5>
                       <p class="card-text"><strong>Fecha y Hora:</strong> ${evolucion.fechaHora}</p>
+                      <p class="card-text"><strong>Nombre Completo:</strong> ${evolucion.paciente ? evolucion.paciente.nombreCompleto : 'Desconocido'} </p>
                       <p class="card-text"><strong>Informe:</strong> ${evolucion.informe}</p>
                       <p class="card-text"><strong>Id de Médico:</strong> ${evolucion.medico.id} - ${evolucion.medico.nombreCompleto}</p>
                       <p class="card-text"><strong>Diagnóstico:</strong> ${evolucion.diagnostico.codigoDescripcion} - ${evolucion.diagnostico.descripcion}</p>
@@ -68,10 +71,14 @@ function renderizarEvoluciones() {
   }
 }
 
+
 // Agregar una nueva evolución al array
 export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   const medico = buscarMedicoPorId(id);
   const diagnostico = buscarDiagnosticoPorId(idDiagnostico);
+
+  // Crear un paciente
+  const paciente = new Paciente(dniPaciente, "Nombre del Paciente");  // Asegúrate de que el paciente tenga un nombre completo
 
   if (!medico) {
       alert('No se encontró el médico con el ID ingresado.');
@@ -87,11 +94,12 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   const textoLibre = `Evolución del paciente con DNI ${dniPaciente}.`;
   const plantilla = 'Plantilla General';
 
-  const nuevaEvolucion = new Evolucion(fechaHora, textoLibre, plantilla, medico, diagnostico, informe);
+  // Pasar el paciente correctamente a la evolución
+  const nuevaEvolucion = new Evolucion(fechaHora, textoLibre, plantilla, medico, diagnostico, informe, paciente);
   evoluciones.push(nuevaEvolucion);
-  
+
   alert('Evolución creada exitosamente.');
-  
+
   // Renderizar las evoluciones
   renderizarEvoluciones();
 }
@@ -99,22 +107,31 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttonAgregarEvolucion = document.getElementById('buttonAgregarEvolucion');
-  if (buttonAgregarEvolucion) {
-    console.log('Botón encontrado');
+  const dniPaciente = document.getElementById('idInputBuscarDNI');
+  const idDiagnostico = document.getElementById('idInputIdDiagnostico');
+  const id = document.getElementById('idInputIdDoctor');
+  const informe = document.getElementById('idInputInforme');
+
+  if (buttonAgregarEvolucion && dniPaciente && idDiagnostico && id && informe) {
+    console.log('Botón y campos encontrados');
     buttonAgregarEvolucion.addEventListener('click', () => {
       console.log('Botón presionado');
-      const dniPaciente = document.getElementById('idInputBuscarDNI').value.trim();
-      const idDiagnostico = document.getElementById('idInputIdDiagnostico').value.trim();
-      const id = document.getElementById('idInputIdDoctor').value.trim();
-      const informe = document.getElementById('idInputInforme').value.trim();
+      
+      // Obtener los valores de los campos
+      const dniPacienteValue = dniPaciente.value.trim();
+      const idDiagnosticoValue = idDiagnostico.value.trim();
+      const idValue = id.value.trim();
+      const informeValue = informe.value.trim();
 
-      if (dniPaciente && idDiagnostico && id && informe) {
-        agregarEvolucion(dniPaciente, idDiagnostico, id, informe);
+      // Verificar si todos los campos tienen valores
+      if (dniPacienteValue && idDiagnosticoValue && idValue && informeValue) {
+        agregarEvolucion(dniPacienteValue, idDiagnosticoValue, idValue, informeValue);
       } else {
         alert('Por favor, completa todos los campos antes de continuar.');
       }
     });
   } else {
-    console.log('Botón no encontrado');
+    console.log('Uno o más elementos no fueron encontrados');
   }
 });
+
