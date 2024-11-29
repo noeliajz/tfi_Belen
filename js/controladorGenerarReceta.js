@@ -1,90 +1,153 @@
-import { Diagnostico } from '../js/Diagnostico.js';
-import { Medicamentos } from '../js/Medicamento.js';
-import { HistoriaClinica } from '../js/historiaClinica.js';
+import { Medicamento } from '../js/Medicamento.js'; // Corrección del nombre de la clase
+import {Medico} from '../js/Medico.js'
+export class RecetaDigital {
+    constructor(fechaHora, dosis, estado, medicamento, medico, descripcion) {
+        this.fechaHora = fechaHora;
+        this.dosis = dosis;
+        this.estado = estado;
+        this.medicamento = medicamento;
+        this.medico = medico
+        this.descripcion = descripcion
+    }
+
+    mostrarDetalles() {
+        console.log(`Fecha y Hora: ${this.fechaHora}`);
+        console.log(`Descripción: ${this.descripcion}`)
+        console.log(`Dosis: ${this.dosis}`);
+        console.log(`Medicamento: ${this.medicamento.nombreGenerico}`);
+        console.log(`Medicamento: ${this.medicamento.nombreComercial}`);
+        console.log(`Medico: ${this.medico.matricula}`);
+
+    }
+}
 
 // Array para almacenar las recetas digitales
 const recetaDigital = [];
 
-export class RecetaDigital {
-    constructor(fechaHora, dosis, estado, diagnostico,  medicamento, historiaClinica) {
-        this.fechaHora = fechaHora;
-        this.dosis = dosis;
-        this.estado = estado;
-        this.diagnostico = diagnostico instanceof Diagnostico ? diagnostico : null;
-        this.medicamento = medicamento instanceof Medicamentos ? medicamento : null;
-        this.historiaClinica = historiaClinica instanceof HistoriaClinica ? historiaClinica : null;
+// Inicialización correcta de los medicamentos
+const medicamentos = [
+    new Medicamento('Tylenol', 'Paracetamol'),
+    new Medicamento('Advil', 'Ibuprofeno'),
+    new Medicamento('Aspirina', 'Ácido acetilsalicílico'),
+    new Medicamento('Zyrtec', 'Cetirizina'),
+    new Medicamento('Nexium', 'Esomeprazol')
+];
 
-        if (!this.diagnostico  || !this.medicamento || !this.historiaClinica) {
-            throw new Error("Todos los campos relacionados deben ser instancias válidas de sus clases correspondientes.");
-        }
-    }
 
-    obtenerDetalles() {
-        return `
-            Fecha y Hora: ${this.fechaHora}
-            Dosis: ${this.dosis}
-            Estado: ${this.estado}
-            Diagnóstico: ${this.diagnostico.descripcion}
-            Medicamento: ${this.medicamento.nombreMedicamento}
-            Historia Clínica: ${this.historiaClinica.nroHC}
-        `;
+function buscarMedicamentoPorNombreGenerico(nombreGenerico) {
+    return medicamentos.find(medicamento => 
+        medicamento && 
+        medicamento.nombreGenerico &&
+        medicamento.nombreGenerico.toLowerCase() === nombreGenerico.toLowerCase()
+    );
+}
+
+function buscarMedicamentoPorNombreComercial(nombreComercial) {
+    return medicamentos.find(medicamento => 
+        medicamento && 
+        medicamento.nombreMedicamento &&
+        medicamento.nombreMedicamento.toLowerCase() === nombreComercial.toLowerCase()
+    );
+}
+
+const medicos = [
+    new Medico(1, '27358147562', 'Martina Gerez', '1990-05-12', 'martina.gerez@example.com', '123456712', '1234', 'Dermatología'),
+    new Medico(2, '27328147563', 'Juliio Gomez', '1992-03-23', 'julio.gerez@example.com', '987654311', '5678', 'Cardiología')
+  ];
+  // Buscar médico por ID (revisar atributo correcto)
+  function buscarMedicoPorMatricula(matricula) {
+    return medicos.find(medico => medico.matricula === matricula);
+}
+
+
+function renderizarRecetas() {
+    const divCardRecetas = document.getElementById('divCardRecetas');
+    divCardRecetas.innerHTML = '';
+
+    if (recetaDigital.length === 0) {
+        divCardRecetas.innerHTML = '<p>No hay recetas registradas.</p>';
+    } else {
+        recetaDigital.forEach((receta, index) => {
+            const card = `
+                <div class="card m-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Receta ${index + 1}</h5>
+                        <p class="card-text"><strong>Fecha y Hora:</strong> ${receta.fechaHora}</p>
+                        <p class="card-text"><strong>Descripción:</strong> ${receta.descripcion}</p>
+                        <p class="card-text"><strong>Dosis:</strong> ${receta.dosis}</p>
+                        <p class="card-text"><strong>Nombre del medicamento comercial y generico:</strong> ${receta.medicamento.nombreGenerico} (${receta.medicamento.nombreComercial})</p>
+                        <p class="card-text"><strong>Matricula del médico:</strong> ${receta.medico.matricula} </p>
+
+                        </div>
+                </div>`;
+            divCardRecetas.innerHTML += card;
+        });
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Verifica si el botón existe en el DOM
     const buttonNuevaReceta = document.getElementById('buttonNuevaReceta');
-    console.log("Elemento buttonNuevaReceta:", buttonNuevaReceta); // Verifica que el botón está siendo cargado correctamente
-
     const inputDescripcion = document.getElementById('idInputNuevoDescripcion');
     const inputDosis = document.getElementById('idInputNuevoDosis');
     const inputNombreGenerico = document.getElementById('idInputNombreGenerico');
     const inputNombreComercial = document.getElementById('idInputNombreComercial');
-    const idInputBuscarMedico = document.getElementById('idInputBuscarMedico');
+    const idInputBuscarMedico = document.getElementById('idInputBuscarMedico'); // Input para la matrícula del médico
 
-    // Asignamos el evento al botón si está disponible
-    if (buttonNuevaReceta) {
-        buttonNuevaReceta.addEventListener('click', () => {
-            console.log("✅ Botón 'Nueva Receta' presionado. Evento click funcionando correctamente.");
-            agregarReceta();
-        });
-    } else {
-        console.error("❌ No se encontró el botón 'Nueva Receta'. Verifica el ID en el HTML.");
+    if (!buttonNuevaReceta) {
+        console.error("❌ Botón 'Nueva Receta' no encontrado.");
+        return;
     }
 
+    buttonNuevaReceta.addEventListener('click', () => {
+        agregarReceta();
+    });
+
     function agregarReceta() {
-        const medico = idInputBuscarMedico.value.trim();
         const descripcion = inputDescripcion.value.trim();
         const dosis = inputDosis.value.trim();
         const nombreGenerico = inputNombreGenerico.value.trim();
         const nombreComercial = inputNombreComercial.value.trim();
+        const matriculaMedico = idInputBuscarMedico.value.trim(); // Captura correcta de matrícula
         const fechaHora = new Date().toLocaleString();
-
-        if (!medico || !descripcion || !dosis || !nombreGenerico || !nombreComercial) {
-            alert('Por favor, complete todos los campos antes de agregar la receta.');
+    
+        if (!descripcion || !dosis || !nombreGenerico || !nombreComercial || !matriculaMedico) {
+            alert('Por favor, complete todos los campos.');
             return;
         }
-
+    
+        const medicamentoEncontrado = buscarMedicamentoPorNombreComercial(nombreComercial) || buscarMedicamentoPorNombreGenerico(nombreGenerico);
+    
+        if (!medicamentoEncontrado) {
+            alert('Medicamento no encontrado en la base de datos.');
+            return;
+        }
+    
+        const medicoEncontrado = buscarMedicoPorMatricula(matriculaMedico);
+    
+        if (!medicoEncontrado) {
+            alert('Médico no encontrado en la base de datos.');
+            return;
+        }
+    
         try {
             const nuevaReceta = new RecetaDigital(
                 fechaHora,
                 dosis,
                 'pendiente',
-                new Diagnostico(descripcion),
-                new Medicamentos(nombreGenerico, nombreComercial),
-                new HistoriaClinica(medico)
+                medicamentoEncontrado,
+                medicoEncontrado,
+                descripcion // Corregido: Pasando la descripción
             );
-
+    
             recetaDigital.push(nuevaReceta);
-
-            console.log("Receta agregada al array:", nuevaReceta);
-            console.log("Estado actual del array de recetas:", recetaDigital);
-
+            renderizarRecetas();
             alert('Receta agregada exitosamente.');
         } catch (error) {
             console.error("Error al crear la receta digital:", error);
-            alert('Error al agregar la receta, verifique los datos ingresados.');
+            alert('Error al agregar la receta.');
         }
     }
 });
+
+
 
