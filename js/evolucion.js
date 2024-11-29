@@ -71,7 +71,6 @@ function renderizarEvoluciones() {
   }
 }
 
-
 // Agregar una nueva evolución al array
 export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   const medico = buscarMedicoPorId(id);
@@ -104,7 +103,6 @@ export function agregarEvolucion(dniPaciente, idDiagnostico, id, informe) {
   renderizarEvoluciones();
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const buttonAgregarEvolucion = document.getElementById('buttonAgregarEvolucion');
   const dniPaciente = document.getElementById('idInputBuscarDNI');
@@ -134,4 +132,5 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Uno o más elementos no fueron encontrados');
   }
 });
+
 
