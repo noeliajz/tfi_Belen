@@ -1,14 +1,15 @@
 import { Medicamento } from '../js/Medicamento.js';
 import { Medico } from '../js/Medico.js';
-
+import {Evolucion} from '../js/evolucion.js'
 export class RecetaDigital {
-    constructor(fechaHora, dosis, estado, medicamento, medico, descripcion) {
+    constructor(fechaHora, dosis, estado, medicamento, medico, descripcion, evolucion) {
         this.fechaHora = fechaHora;
         this.dosis = dosis;
         this.estado = estado;
         this.medicamento = medicamento;
         this.medico = medico;
         this.descripcion = descripcion;
+        this.evolucion = evolucion
     }
 
     mostrarDetalles() {
