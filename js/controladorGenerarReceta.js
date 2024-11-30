@@ -75,8 +75,9 @@ function renderizarRecetas() {
                         <p class="card-text"><strong>Fecha y Hora:</strong> ${receta.fechaHora}</p>
                         <p class="card-text"><strong>Descripción:</strong> ${receta.descripcion}</p>
                         <p class="card-text"><strong>Dosis:</strong> ${receta.dosis}</p>
-                        <p class="card-text"><strong>Nombre del medicamento comercial y generico:</strong> ${receta.medicamento.nombreGenerico} (${receta.medicamento.nombreComercial})</p>
-                        <p class="card-text"><strong>Matricula del médico:</strong> ${receta.medico.matricula} </p>
+                        <p class="card-text"><strong>Nombre del medicamento:</strong> ${receta.medicamento.nombreGenerico} (${receta.medicamento.nombreComercial})</p>
+                        <p class="card-text"><strong>Médico:</strong> ${receta.medico.nombreCompleto} (${receta.medico.matricula})</p>
+                        <p class="card-text"><strong>Matricula:</strong>${receta.medico.matricula}</p>
 
                         </div>
                 </div>`;
@@ -84,6 +85,7 @@ function renderizarRecetas() {
         });
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const buttonNuevaReceta = document.getElementById('buttonNuevaReceta');
