@@ -1,4 +1,4 @@
-Feature: Creación de evoluciones
+Feature: Evolución médica
 
   Scenario: Agregar una nueva evolución
     Given el médico con matrícula 1234 está en la historia clínica del paciente

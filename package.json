@@ -1,19 +1,12 @@
 {
   "name": "tfi_belen-4",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.6.0",
+    "chai": "^4.5.0"
+  },
   "scripts": {
     "test": "cucumber-js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@cucumber/cucumber": "^11.1.0",
-    "cucumber": "^6.0.7"
-  },
-  "dependencies": {
-    "reflect-metadata": "^0.2.2"
   }
 }

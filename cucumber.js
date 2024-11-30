@@ -1,4 +1,8 @@
-module.exports = {
-    default: `--require step_definitions/**/*.js --format summary`
-  };
-  
+export default {
+  default: {
+    paths: ["features/**/*.feature"],
+    require: ["features/step_definitions/**/*.js"],
+    publishQuiet: true,
+  },
+};
+
