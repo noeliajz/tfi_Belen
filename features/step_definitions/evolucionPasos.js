@@ -1,31 +1,39 @@
-import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "chai";
+const { Given, When, Then } = require('@cucumber/cucumber');
+const assert = require('assert');
 
-// Contexto global para datos compartidos
-let contexto = {};
-
-// Paso 1: Given
-Given(
-  "el médico con matrícula {int} está en la historia clínica del paciente",
-  function (matricula) {
-    contexto.matricula = matricula;
+// Simulando un sistema de historia clínica
+let historiaClinica = {
+  evoluciones: [],
+  paciente: {
+    id: '1',
+    nombre: 'Juan Pérez'
   }
-);
+};
 
-// Paso 2: When
-When(
-  "el médico ingresa una nueva evolución con idMedico {int} y informe {string}",
-  function (idMedico, informe) {
-    contexto.evolucion = { idMedico, informe };
-  }
-);
+// Dado que el médico está en la historia clínica del paciente
+Given('el médico con matrícula {string} está en la historia clínica del paciente', function (matricula) {
+  this.matricula = matricula;
+  // Aquí puedes agregar lógica para obtener la historia clínica de un paciente en el sistema
+});
 
-// Paso 3: Then
-Then(
-  "la evolución debe quedar registrada como médico con matrícula {int} y nueva evolución con idMedico {int} y informe {string}",
-  function (matricula, idMedico, informe) {
-    expect(contexto.matricula).to.equal(matricula);
-    expect(contexto.evolucion.idMedico).to.equal(idMedico);
-    expect(contexto.evolucion.informe).to.equal(informe);
-  }
-);
+// Cuando el médico ingresa una nueva evolución con los datos proporcionados
+When('el médico ingresa una nueva evolución con idMedico {string} y informe {string}', function (idMedico, informe) {
+  const evolucion = {
+    idMedico: idMedico,
+    informe: informe,
+    matriculaMedico: this.matricula
+  };
+
+  // Simulamos que la evolución se agrega a la historia clínica
+  historiaClinica.evoluciones.push(evolucion);
+});
+
+// Entonces la evolución debe quedar registrada con los datos esperados
+Then('la evolución debe quedar registrada como médico con matrícula {string} y nueva evolución con idMedico {string} y informe {string}', function (matricula, idMedico, informe) {
+  const evolucion = historiaClinica.evoluciones.find(e => e.idMedico === idMedico && e.informe === informe);
+  
+  assert.ok(evolucion, 'La evolución no se ha registrado correctamente.');
+  assert.strictEqual(evolucion.matriculaMedico, matricula, `La matrícula del médico debería ser ${matricula}`);
+  assert.strictEqual(evolucion.idMedico, idMedico, `El id del médico debería ser ${idMedico}`);
+  assert.strictEqual(evolucion.informe, informe, `El informe debería ser "${informe}"`);
+});
