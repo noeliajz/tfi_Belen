@@ -84,3 +84,5 @@ document.addEventListener('DOMContentLoaded', () => {
     HistoriaClinica.agregarNuevoDiagnostico(nroHC, fechaCreacion, descripcionDiagnostico, codigoDiagnostico, RepositorioPaciente);
   });
 });
+
+
