@@ -1,81 +1,88 @@
-// Clase PedidoLaboratorio
+import { Paciente } from "./RepositorioPaciente.js";
+import { Medico } from "./Medico.js";
+
 export class PedidoLaboratorio {
-  constructor(fechaHora, tipoAnalisis) {
-    this.fechaHora = fechaHora;  // Fecha y hora del pedido
-    this.tipoAnalisis = tipoAnalisis;  // Tipo de análisis solicitado
+  constructor(fechaHora, tipoAnalisis, medico, paciente) {
+    this.fechaHora = fechaHora;
+    this.tipoAnalisis = tipoAnalisis;
+    this.medico = medico;
+    this.paciente = paciente;
   }
 
-  // Método para obtener la descripción del pedido de laboratorio
   obtenerDescripcion() {
     return `
       Fecha y Hora: ${this.fechaHora} <br>
-      Tipo de Análisis: ${this.tipoAnalisis}
+      Paciente: ${this.paciente.nombreCompleto} <br>
+      Número de afiliado: ${this.paciente.nroAfiliado} <br>
+      Tipo de Análisis: ${this.tipoAnalisis} <br>
+      Médico: ${this.medico.nombreCompleto}
     `;
   }
 }
 
-// Array para almacenar los pedidos
 const pedidosLaboratorio = [];
 
-// Referencias a los elementos del DOM
-const buttonNuevoPedidoMedico = document.getElementById('buttonNuevoPedidoMedico');
-const inputFechaHora = document.getElementById('idInputDate');
-const inputTipoAnalisis = document.getElementById('idInputTipoAnalisis');
-const cardPedidoMedico = document.getElementById('cardPedidoMedico');
+const pacientes = [
+  new Paciente(1, "27358147562", "Belen Gerez", "1990-05-12", "belen.gerez@example.com", "123456789", "A123", "43203765"),
+  new Paciente(2, "27328147563", "Julieta Gerez", "1992-03-23", "julieta.gerez@example.com", "987654321", "B456", "43203674")
+];
 
-// Función para agregar un nuevo pedido de laboratorio
-function agregarPedidoLaboratorio() {
-  // Obtener los datos ingresados
-  const fechaHora = inputFechaHora.value.trim();
-  const tipoAnalisis = inputTipoAnalisis.value.trim();
+const medicos = [
+  new Medico(1, "27358147562", "Martina Gerez", "1990-05-12", "martina.gerez@example.com", "123456712", "1234", "Dermatología"),
+  new Medico(2, "27328147563", "Julio Gomez", "1992-03-23", "julio.gomez@example.com", "987654311", "5678", "Cardiología")
+];
 
-  // Verificar que los campos no estén vacíos
-  if (!fechaHora || !tipoAnalisis) {
-    alert('Por favor, complete todos los campos antes de agregar el pedido.');
-    return;
+document.addEventListener("DOMContentLoaded", () => {
+  const buttonNuevoPedidoMedico = document.getElementById("buttonNuevoPedidoMedico");
+  const cardPedidoMedico = document.getElementById("cardPedidoMedico");
+  const inputFechaHora = document.getElementById("idInputDate");
+  const inputTipoAnalisis = document.getElementById("idInputTipoAnalisis");
+
+  function agregarPedidoLaboratorio() {
+    const fechaHora = inputFechaHora.value.trim();
+    const tipoAnalisis = inputTipoAnalisis.value.trim();
+
+    // Validar inputs
+    if (!fechaHora || !tipoAnalisis) {
+      alert("Por favor complete todos los campos antes de agregar un nuevo pedido.");
+      return;
+    }
+
+    const pacienteSeleccionado = pacientes[Math.floor(Math.random() * pacientes.length)];
+    const medicoSeleccionado = medicos[Math.floor(Math.random() * medicos.length)];
+
+    const nuevoPedido = new PedidoLaboratorio(fechaHora, tipoAnalisis, medicoSeleccionado, pacienteSeleccionado);
+    pedidosLaboratorio.push(nuevoPedido);
+    renderizarRecetas();
+
+    // Limpiar los campos
+    inputFechaHora.value = "";
+    inputTipoAnalisis.value = "";
   }
 
-  // Crear un nuevo pedido de laboratorio
-  const nuevoPedido = new PedidoLaboratorio(fechaHora, tipoAnalisis);
+  function renderizarRecetas() {
+    cardPedidoMedico.innerHTML = "";
 
-  // Agregar el pedido al array
-  pedidosLaboratorio.push(nuevoPedido);
+    if (pedidosLaboratorio.length === 0) {
+      cardPedidoMedico.innerHTML = '<p>No hay pedidos de laboratorio registrados.</p>';
+    } else {
+      pedidosLaboratorio.forEach((pedido, index) => {
+        const card = `
+          <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Pedido #${index + 1}</h5>
+              <p class="card-text"><strong>Fecha y Hora:</strong> ${pedido.fechaHora}</p>
+              <p class="card-text"><strong>Paciente:</strong> ${pedido.paciente.nombreCompleto}</p>
+              <p class="card-text"><strong>Número de afiliado:</strong> ${pedido.paciente.nroAfiliado}</p>
+              <p class="card-text"><strong>Tipo de análisis:</strong> ${pedido.tipoAnalisis}</p>
+              <p class="card-text"><strong>Médico:</strong> ${pedido.medico.nombreCompleto}</p>
+            </div>
+          </div>`;
+        cardPedidoMedico.innerHTML += card;
+      });
+    }
+  }
 
-  // Mostrar los pedidos en la interfaz
-  mostrarPedidos();
-
-  // Limpiar los campos del formulario
-  inputFechaHora.value = '';
-  inputTipoAnalisis.value = '';
-}
-
-// Función para mostrar los pedidos en la interfaz
-function mostrarPedidos() {
-  // Limpiar el contenido previo
-  cardPedidoMedico.innerHTML = '';
-
-  // Recorrer el array de pedidos y crear tarjetas para cada uno
-  pedidosLaboratorio.forEach((pedido, index) => {
-    const pedidoCard = document.createElement('div');
-    pedidoCard.className = 'card mb-3';
-    pedidoCard.style = 'max-width: 540px;';
-
-    pedidoCard.innerHTML = `
-      <div class="row g-0">
-        <div class="col-md-12">
-          <div class="card-body">
-            <h5 class="card-title">Pedido de Laboratorio #${index + 1}</h5>
-            <p class="card-text"><strong>Fecha y Hora:</strong> ${pedido.fechaHora}</p>
-            <p class="card-text"><strong>Tipo de Análisis:</strong> ${pedido.tipoAnalisis}</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Añadir la tarjeta al contenedor
-    cardPedidoMedico.appendChild(pedidoCard);
-  });
-}
-
-// Asignar evento al botón para agregar un nuevo pedido
-buttonNuevoPedidoMedico.addEventListener('click', agregarPedidoLaboratorio);
+  buttonNuevoPedidoMedico.addEventListener("click", agregarPedidoLaboratorio);
+  renderizarRecetas();
+});
