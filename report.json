@@ -19,7 +19,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1274099
+              "duration": 1422500
             }
           },
           {
@@ -32,7 +32,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 447900
+              "duration": 672699
             }
           },
           {
@@ -45,7 +45,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 232200
+              "duration": 341599
             }
           },
           {
@@ -58,7 +58,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 536800
+              "duration": 988100
             }
           },
           {
@@ -71,7 +71,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 557000
+              "duration": 1112200
             }
           }
         ],
@@ -106,7 +106,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 112300
+              "duration": 164000
             }
           },
           {
@@ -119,7 +119,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 131099
+              "duration": 274699
             }
           },
           {
@@ -132,7 +132,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 210200
+              "duration": 203000
             }
           }
         ],
@@ -152,6 +152,68 @@
     "elements": [
       {
         "description": "",
+        "id": "evoluciones-médicas;seleccionar-\"agregar-evolución\"",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Seleccionar \"Agregar evolución\"",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "El médico con matrícula \"1234\" está logueado",
+            "match": {
+              "location": "features\\step_definitions\\evolucionTest.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 603699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "El médico selecciona la opción \"Agregar evolución\" con ID de evolución \"12\", fecha \"11/09/2024 10:08:32\", y descripción \"etapa inicial\"",
+            "match": {
+              "location": "features\\step_definitions\\evolucionTest.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 808599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "El sistema debe asociar la nueva evolución con el diagnóstico",
+            "match": {
+              "location": "features\\step_definitions\\evolucionTest.js:19"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 319299,
+              "error_message": "ReferenceError: obtenerEvolucionPorId is not defined\n    at World.<anonymous> (C:\\Users\\Inspiron 15\\Desktop\\TFI_ALCANCE1\\tfi_Belen-5\\features\\step_definitions\\evolucionTest.js:20:21)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "evoluciones-médicas",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Evoluciones médicas",
+    "tags": [],
+    "uri": "features\\evolucionTest.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
         "id": "login-de-usuario;login-exitoso-con-correo-y-contraseña-válidos",
         "keyword": "Scenario",
         "line": 4,
@@ -162,9 +224,12 @@
             "keyword": "Given ",
             "line": 5,
             "name": "el usuario está en la página de login",
+            "match": {
+              "location": "features\\step_definitions\\loginPasos.js:15"
+            },
             "result": {
-              "status": "ambiguous",
-              "duration": 0
+              "status": "passed",
+              "duration": 795799
             }
           },
           {
@@ -172,9 +237,12 @@
             "keyword": "When ",
             "line": 6,
             "name": "el usuario ingresa su correo \"gerezbelen875@gmail.com\" y contraseña \"123\"",
+            "match": {
+              "location": "features\\step_definitions\\loginPasos.js:21"
+            },
             "result": {
-              "status": "ambiguous",
-              "duration": 0
+              "status": "passed",
+              "duration": 1177000
             }
           },
           {
@@ -186,8 +254,8 @@
               "location": "features\\step_definitions\\loginPasos.js:35"
             },
             "result": {
-              "status": "skipped",
-              "duration": 0
+              "status": "passed",
+              "duration": 1656600
             }
           }
         ],
@@ -201,60 +269,5 @@
     "name": "Login de usuario",
     "tags": [],
     "uri": "features\\login.feature"
-  },
-  {
-    "description": "",
-    "elements": [
-      {
-        "description": "",
-        "id": "login-de-usuario;login-fallido-con-correo-y-contraseña-inválidos",
-        "keyword": "Scenario",
-        "line": 3,
-        "name": "Login fallido con correo y contraseña inválidos",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 4,
-            "name": "el usuario está en la página de login",
-            "result": {
-              "status": "ambiguous",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 5,
-            "name": "el usuario ingresa su correo \"gerezbelen877@gmail.com\" y contraseña \"124\"",
-            "result": {
-              "status": "ambiguous",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 6,
-            "name": "el mensaje de error \"Correo o contraseña incorrectos\" debe ser mostrado",
-            "match": {
-              "location": "features\\step_definitions\\loginCorreoIncorrecto.js:38"
-            },
-            "result": {
-              "status": "skipped",
-              "duration": 0
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      }
-    ],
-    "id": "login-de-usuario",
-    "line": 1,
-    "keyword": "Feature",
-    "name": "Login de usuario",
-    "tags": [],
-    "uri": "features\\loginCorreoIncorrecto.feature"
   }
 ]
