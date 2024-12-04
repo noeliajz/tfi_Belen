@@ -1,0 +1,260 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "gestión-de-diagnósticos;agregar-un-nuevo-diagnóstico-en-texto-libre",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Agregar un nuevo diagnóstico en texto libre",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "el médico con matrícula 43569 está en la pantalla de evoluciones",
+            "match": {
+              "location": "features\\step_definitions\\diagnosticoPasos.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "el médico selecciona \"Agregar diagnóstico\"",
+            "match": {
+              "location": "features\\step_definitions\\diagnosticoPasos.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 447900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "el médico elige la opción \"texto libre\"",
+            "match": {
+              "location": "features\\step_definitions\\diagnosticoPasos.js:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 232200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "el médico ingresa la descripción \"Trastorno metabólico\"",
+            "match": {
+              "location": "features\\step_definitions\\diagnosticoPasos.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 536800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "el diagnóstico debe guardarse asociado a la evolución actual",
+            "match": {
+              "location": "features\\step_definitions\\diagnosticoPasos.js:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 557000
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "gestión-de-diagnósticos",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Gestión de diagnósticos",
+    "tags": [],
+    "uri": "features\\diagnostico.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "evolución-médica;agregar-una-nueva-evolución",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Agregar una nueva evolución",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "el médico con matrícula '1234' está en la historia clínica del paciente",
+            "match": {
+              "location": "features\\step_definitions\\evolucionPasos.js:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 112300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "el médico ingresa una nueva evolución con idMedico '1' y informe \"tiene fiebre\"",
+            "match": {
+              "location": "features\\step_definitions\\evolucionPasos.js:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 131099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "la evolución debe quedar registrada como médico con matrícula '1234' y nueva evolución con idMedico '1' y informe \"tiene fiebre\"",
+            "match": {
+              "location": "features\\step_definitions\\evolucionPasos.js:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 210200
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "evolución-médica",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Evolución médica",
+    "tags": [],
+    "uri": "features\\evolucion.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-de-usuario;login-exitoso-con-correo-y-contraseña-válidos",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Login exitoso con correo y contraseña válidos",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "el usuario está en la página de login",
+            "result": {
+              "status": "ambiguous",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "el usuario ingresa su correo \"gerezbelen875@gmail.com\" y contraseña \"123\"",
+            "result": {
+              "status": "ambiguous",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "el usuario debe ser redirigido a la página principal",
+            "match": {
+              "location": "features\\step_definitions\\loginPasos.js:35"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-de-usuario",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Login de usuario",
+    "tags": [],
+    "uri": "features\\login.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-de-usuario;login-fallido-con-correo-y-contraseña-inválidos",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Login fallido con correo y contraseña inválidos",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "el usuario está en la página de login",
+            "result": {
+              "status": "ambiguous",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "el usuario ingresa su correo \"gerezbelen877@gmail.com\" y contraseña \"124\"",
+            "result": {
+              "status": "ambiguous",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "el mensaje de error \"Correo o contraseña incorrectos\" debe ser mostrado",
+            "match": {
+              "location": "features\\step_definitions\\loginCorreoIncorrecto.js:38"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-de-usuario",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login de usuario",
+    "tags": [],
+    "uri": "features\\loginCorreoIncorrecto.feature"
+  }
+]

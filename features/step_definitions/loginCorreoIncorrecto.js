@@ -26,11 +26,8 @@ When('el usuario ingresa su correo {string} y contraseña {string}', function (c
   console.log(`Correo ingresado: ${correoIngresado}, Contraseña ingresada: ${contrasenaIngresada}`);
 
   // Simulamos el proceso de autenticación
-  if (!usuariosValidos[correoIngresado]) {
-    mensajeError = 'Correo o contraseña incorrectos'; // Error por correo inválido
-    usuarioEnLogin = false;
-  } else if (usuariosValidos[correoIngresado] !== contrasenaIngresada) {
-    mensajeError = 'Correo o contraseña incorrectos'; // Error por contraseña inválida
+  if (!usuariosValidos[correoIngresado] || usuariosValidos[correoIngresado] !== contrasenaIngresada) {
+    mensajeError = 'Correo o contraseña incorrectos'; // Error para correo o contraseña inválidos
     usuarioEnLogin = false;
   } else {
     usuarioEnLogin = true; // Login exitoso
