@@ -1,30 +1,63 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 
-// Datos simulados
-let medico = null;
-let evolucion = null;
+// Simulación de datos en memoria
+let sistema = {
+    medicosLogueados: [],
+    evoluciones: []
+};
+
+// Función para loguear a un médico
+function loguearMedico(matricula) {
+    sistema.medicosLogueados.push({ matricula });
+}
+
+// Función para verificar si un médico está logueado
+function esMedicoLogueado(matricula) {
+    return sistema.medicosLogueados.some(medico => medico.matricula === matricula);
+}
+
+// Función para agregar una evolución
+function agregarEvolucion(idDoctor, observacion) {
+    sistema.evoluciones.push({ idDoctor, observacion });
+}
+
+// Función para verificar si la evolución se agregó correctamente
+function verificarEvolucionAgregada(idDoctor, observacion) {
+    return sistema.evoluciones.some(evolucion =>
+        evolucion.idDoctor === idDoctor && evolucion.observacion === observacion
+    );
+}
+
+// Step Definitions
 
 Given('El médico con matrícula {string} está logueado', function (matricula) {
-  // Simula el login del médico
-  medico = { matricula };
-  console.log(`Médico con matrícula ${matricula} está logueado.`);
+    loguearMedico(matricula);
+    console.log(`Médico con matrícula ${matricula} logueado.`);
 });
 
-When('El médico selecciona la opción {string} con ID de evolución {string}, fecha {string}, y descripción {string}', function (accion, idEvolucion, fecha, descripcion) {
-  // Simula la selección de la opción "Agregar evolución"
-  evolucion = { idEvolucion, fecha, descripcion, diagnostico: "Diagnóstico inicial", receta: "Receta adjunta" };
-  console.log(`Médico selecciona ${accion} con ID de evolución ${idEvolucion}, fecha ${fecha} y descripción ${descripcion}.`);
+When('ingresa el id de doctor {string}', function (idDoctor) {
+    this.idDoctor = idDoctor;
+    console.log(`ID del doctor ingresado: ${idDoctor}`);
 });
 
-Then('El sistema debe asociar la nueva evolución con el diagnóstico', function () {
-  const evolucion = obtenerEvolucionPorId('2');
-  const diagnosticoAsociado = evolucion.diagnostico;
-
-  if (diagnosticoAsociado) {
-      console.log(`Diagnóstico asociado a la evolución con ID 2: ${diagnosticoAsociado}`);
-      return true;
-  } else {
-      throw new Error('El diagnóstico no fue asociado correctamente.');
-  }
+When('agrega una observacion {string}', function (observacion) {
+    this.observacion = observacion;
+    console.log(`Observación agregada: ${observacion}`);
 });
 
+When('presiono el boton {string}', function (boton) {
+    if (boton === "agregar evolucion" && esMedicoLogueado("1234")) {
+        agregarEvolucion(this.idDoctor, this.observacion);
+        console.log(`Botón "${boton}" presionado.`);
+    } else {
+        throw new Error('El médico no está logueado o el botón es incorrecto.');
+    }
+});
+
+Then('se agrega la evolucion exitosamente', function () {
+    const evolucionAgregada = verificarEvolucionAgregada(this.idDoctor, this.observacion);
+    if (!evolucionAgregada) {
+        throw new Error('La evolución no se agregó correctamente.');
+    }
+    console.log('Evolución agregada exitosamente.');
+});

@@ -4,6 +4,67 @@
     "elements": [
       {
         "description": "",
+        "id": "evolución-médica;agregar-una-nueva-evolución",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Agregar una nueva evolución",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "el médico con matrícula '1234' está en la historia clínica del paciente",
+            "match": {
+              "location": "features\\step_definitions\\evolucionPasos.js:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1515600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "el médico ingresa una nueva evolución con idMedico '1' y informe \"tiene fiebre\"",
+            "match": {
+              "location": "features\\step_definitions\\evolucionPasos.js:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 180299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "la evolución debe quedar registrada como médico con matrícula '1234' y nueva evolución con idMedico '1' y informe \"tiene fiebre\"",
+            "match": {
+              "location": "features\\step_definitions\\evolucionPasos.js:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 222099
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "evolución-médica",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Evolución médica",
+    "tags": [],
+    "uri": "features\\agregarEvolucion.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
         "id": "gestión-de-diagnósticos;agregar-un-nuevo-diagnóstico-en-texto-libre",
         "keyword": "Scenario",
         "line": 3,
@@ -19,7 +80,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1422500
+              "duration": 475200
             }
           },
           {
@@ -32,7 +93,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 672699
+              "duration": 572199
             }
           },
           {
@@ -45,7 +106,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 341599
+              "duration": 446599
             }
           },
           {
@@ -58,7 +119,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 988100
+              "duration": 473700
             }
           },
           {
@@ -71,7 +132,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1112200
+              "duration": 388100
             }
           }
         ],
@@ -91,71 +152,10 @@
     "elements": [
       {
         "description": "",
-        "id": "evolución-médica;agregar-una-nueva-evolución",
+        "id": "evoluciones-médicas;agregar-evolución-exitosamente",
         "keyword": "Scenario",
         "line": 3,
-        "name": "Agregar una nueva evolución",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 4,
-            "name": "el médico con matrícula '1234' está en la historia clínica del paciente",
-            "match": {
-              "location": "features\\step_definitions\\evolucionPasos.js:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 164000
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 5,
-            "name": "el médico ingresa una nueva evolución con idMedico '1' y informe \"tiene fiebre\"",
-            "match": {
-              "location": "features\\step_definitions\\evolucionPasos.js:20"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 274699
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 6,
-            "name": "la evolución debe quedar registrada como médico con matrícula '1234' y nueva evolución con idMedico '1' y informe \"tiene fiebre\"",
-            "match": {
-              "location": "features\\step_definitions\\evolucionPasos.js:32"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 203000
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      }
-    ],
-    "id": "evolución-médica",
-    "line": 1,
-    "keyword": "Feature",
-    "name": "Evolución médica",
-    "tags": [],
-    "uri": "features\\evolucion.feature"
-  },
-  {
-    "description": "",
-    "elements": [
-      {
-        "description": "",
-        "id": "evoluciones-médicas;seleccionar-\"agregar-evolución\"",
-        "keyword": "Scenario",
-        "line": 3,
-        "name": "Seleccionar \"Agregar evolución\"",
+        "name": "Agregar evolución exitosamente",
         "steps": [
           {
             "arguments": [],
@@ -163,38 +163,63 @@
             "line": 4,
             "name": "El médico con matrícula \"1234\" está logueado",
             "match": {
-              "location": "features\\step_definitions\\evolucionTest.js:7"
+              "location": "features\\step_definitions\\evolucionTest.js:33"
             },
             "result": {
               "status": "passed",
-              "duration": 603699
+              "duration": 726100
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 5,
-            "name": "El médico selecciona la opción \"Agregar evolución\" con ID de evolución \"12\", fecha \"11/09/2024 10:08:32\", y descripción \"etapa inicial\"",
+            "name": "ingresa el id de doctor \"1\"",
             "match": {
-              "location": "features\\step_definitions\\evolucionTest.js:13"
+              "location": "features\\step_definitions\\evolucionTest.js:38"
             },
             "result": {
               "status": "passed",
-              "duration": 808599
+              "duration": 509300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "agrega una observacion \"Tiene fiebre\"",
+            "match": {
+              "location": "features\\step_definitions\\evolucionTest.js:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 765800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "presiono el boton \"agregar evolucion\"",
+            "match": {
+              "location": "features\\step_definitions\\evolucionTest.js:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 792300
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 6,
-            "name": "El sistema debe asociar la nueva evolución con el diagnóstico",
+            "line": 8,
+            "name": "se agrega la evolucion exitosamente",
             "match": {
-              "location": "features\\step_definitions\\evolucionTest.js:19"
+              "location": "features\\step_definitions\\evolucionTest.js:57"
             },
             "result": {
-              "status": "failed",
-              "duration": 319299,
-              "error_message": "ReferenceError: obtenerEvolucionPorId is not defined\n    at World.<anonymous> (C:\\Users\\Inspiron 15\\Desktop\\TFI_ALCANCE1\\tfi_Belen-5\\features\\step_definitions\\evolucionTest.js:20:21)"
+              "status": "passed",
+              "duration": 513900
             }
           }
         ],
@@ -207,7 +232,216 @@
     "keyword": "Feature",
     "name": "Evoluciones médicas",
     "tags": [],
-    "uri": "features\\evolucionTest.feature"
+    "uri": "features\\evolucionExitosa.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "creación-de-receta-digital;generar-receta-digital-con-éxito",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Generar receta digital con éxito",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "un médico ha registrado la descripción \"Tomar Paracetamol\", la dosis \"2 gotas por día\" y el medicamento \"Paracetamol\"",
+            "match": {
+              "location": "features\\step_definitions\\generarRecetaDigital.js:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 411400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "el médico presiona el botón \"generar receta digital\"",
+            "match": {
+              "location": "features\\step_definitions\\generarRecetaDigital.js:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 333499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "el sistema debe generar la receta digital con los datos proporcionados",
+            "match": {
+              "location": "features\\step_definitions\\generarRecetaDigital.js:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 548700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "el sistema debe mostrar un mensaje de éxito \"Receta generada correctamente\"",
+            "match": {
+              "location": "features\\step_definitions\\generarRecetaDigital.js:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 117700
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "creación-de-receta-digital",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Creación de receta digital",
+    "tags": [],
+    "uri": "features\\generarRecetaDigital.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login;login-fallido-contraseña-incorrecta",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Login fallido contraseña incorrecta",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "el usuario con correo \"gerezbelen875@gmail.com\"",
+            "match": {
+              "location": "features\\step_definitions\\loginContraInco.js:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 80000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "el usuario ingresa su contraseña \"124\"",
+            "match": {
+              "location": "features\\step_definitions\\loginContraInco.js:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 162500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "el sistema debe mostrar un mensaje de error \"contraseña incorrecta\"",
+            "match": {
+              "location": "features\\step_definitions\\loginContraInco.js:37"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 258200
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login",
+    "tags": [],
+    "uri": "features\\loginContraInco.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-de-usuario;intento-de-inicio-de-sesión-fallido-por-correo-incorrecto",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Intento de inicio de sesión fallido por correo incorrecto",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "el usuario con correo no registrado \"gerezbelen877@gmail.com\"",
+            "match": {
+              "location": "features\\step_definitions\\loginCorreoIncor.js:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 353600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "ingresa una contraseña \"123\"",
+            "match": {
+              "location": "features\\step_definitions\\loginCorreoIncor.js:35"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 388000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "presiona el botón \"Iniciar sesión\"",
+            "match": {
+              "location": "features\\step_definitions\\loginCorreoIncor.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 633299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "el sistema muestra un mensaje de error \"Usuario no encontrado\"",
+            "match": {
+              "location": "features\\step_definitions\\loginCorreoIncor.js:47"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 338500
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-de-usuario",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login de usuario",
+    "tags": [],
+    "uri": "features\\loginCorreoIncor.feature"
   },
   {
     "description": "",
@@ -225,11 +459,11 @@
             "line": 5,
             "name": "el usuario está en la página de login",
             "match": {
-              "location": "features\\step_definitions\\loginPasos.js:15"
+              "location": "features\\step_definitions\\loginExitoso.js:15"
             },
             "result": {
               "status": "passed",
-              "duration": 795799
+              "duration": 275399
             }
           },
           {
@@ -238,11 +472,11 @@
             "line": 6,
             "name": "el usuario ingresa su correo \"gerezbelen875@gmail.com\" y contraseña \"123\"",
             "match": {
-              "location": "features\\step_definitions\\loginPasos.js:21"
+              "location": "features\\step_definitions\\loginExitoso.js:21"
             },
             "result": {
               "status": "passed",
-              "duration": 1177000
+              "duration": 526099
             }
           },
           {
@@ -251,11 +485,11 @@
             "line": 7,
             "name": "el usuario debe ser redirigido a la página principal",
             "match": {
-              "location": "features\\step_definitions\\loginPasos.js:35"
+              "location": "features\\step_definitions\\loginExitoso.js:35"
             },
             "result": {
               "status": "passed",
-              "duration": 1656600
+              "duration": 995499
             }
           }
         ],
@@ -268,6 +502,6 @@
     "keyword": "Feature",
     "name": "Login de usuario",
     "tags": [],
-    "uri": "features\\login.feature"
+    "uri": "features\\loginExitoso.feature"
   }
 ]
