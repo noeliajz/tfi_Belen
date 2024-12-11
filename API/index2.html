@@ -1,21 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consumo de API</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probar API Medicamentos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #medicamentos {
+      margin-top: 20px;
+    }
+    .medicamento {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Consulta de Medicamentos</h1>
-    
-    <!-- Botón para realizar la consulta -->
-    <button id="btn-detalle-medicamento">Ver Detalle de Medicamento</button>
-    
-    <!-- Contenedor para mostrar el resultado -->
-    <div id="contenedor-detalle-medicamento"></div>
 
-    <!-- Vinculamos el archivo script.js -->
-    <script src="script.js"></script>
-    
+  <h1>Probar API de Medicamentos</h1>
+  <button onclick="obtenerMedicamentos()">Obtener Medicamentos</button>
+
+  <div id="medicamentos"></div>
+
+  <script>
+    // URL base de la API
+    const baseURL = 'https://istp1service.azurewebsites.net/api/servicio-salud/medicamentos/todos';
+
+    // Función para obtener medicamentos (aca el profe agrego el promt de lo que me)
+    async function obtenerMedicamentos() {
+        fetch('https://istp1service.azurewebsites.net/api/servicio-salud/medicamentos/todos?pagina=1&limite=15', {
+  method: 'GET',
+  headers: {
+    'accept': '*/*'
+  }
+})
+.then(response => response.json())
+.then(data => {
+  console.log(data);
+})
+.catch(error => {
+  console.error('Error:', error);
+});
+
+    }
+
+    // Función para mostrar medicamentos en el HTML
+    function mostrarMedicamentos(medicamentos) {
+      const medicamentosDiv = document.getElementById('medicamentos');
+      if (medicamentos && medicamentos.length > 0) {
+        medicamentosDiv.innerHTML = ''; // Limpiar mensaje de carga
+
+        medicamentos.forEach(medicamento => {
+          const div = document.createElement('div');
+          div.classList.add('medicamento');
+          div.innerHTML = `
+            <strong>${medicamento.nombre}</strong><br>
+            <em>${medicamento.descripcion}</em><br>
+            <small>Código: ${medicamento.codigo}</small>
+          `;
+          medicamentosDiv.appendChild(div);
+        });
+      } else {
+        medicamentosDiv.innerHTML = '<p>No se encontraron medicamentos.</p>';
+      }
+    }
+  </script>
+
 </body>
 </html>

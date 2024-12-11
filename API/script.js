@@ -1,49 +1,40 @@
-const BASE_URL = "https://istp1service.azurewebsites.net/swagger/index.html";
+const axios = require('axios');
 
-//funcion 
-async function obtenerDetalleMedicamento(id) {
+// URL base de la API
+const baseURL = 'https://istp1service.azurewebsites.net/api/servicio-salud/medicamentos/todos';
+
+// Función para obtener medicamentos
+async function obtenerMedicamentos() {
+  try {
+    const response = await axios.get(baseURL);
+    console.log(response.data); // Mostrar la respuesta de la API
+  } catch (error) {
+    console.error('Error al obtener los medicamentos:', error);
+  }
+}
+
+async function obtenerMedicamentos() {
+    const medicamentosDiv = document.getElementById('medicamentos');
+    medicamentosDiv.innerHTML = '<p>Cargando...</p>';
+  
     try {
-        const response = await fetch(`${BASE_URL}Medicamentos/${id}`);
-        
-        // Verificar si la respuesta es exitosa
-        if (!response.ok) {
-            throw new Error(`Error al obtener medicamento con ID ${id}: ${response.status}`);
-        }
-
-        // Convertir la respuesta en JSON
-        const detalle = await response.json();
-        return detalle;
+      const response = await fetch(baseURL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'no-cors', // Añadir 'no-cors'
+      });
+  
+      // No podrás acceder a los datos directamente en este modo.
+      if (!response.ok) {
+        throw new Error('Error al obtener los medicamentos');
+      }
+      medicamentosDiv.innerHTML = '<p>La solicitud fue realizada, pero no podemos acceder a los datos.</p>';
     } catch (error) {
-        console.error("Error al obtener el medicamento:", error);
-        return null;
+      medicamentosDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
     }
-}
-
-document.getElementById("btn-detalle-medicamento").addEventListener("click", async () => {
-    // Solicitar al usuario un ID mediante un prompt
-    const id = prompt("Ingresa el ID del medicamento:");
-
-    if (id) {
-        const detalle = await obtenerDetalleMedicamento(id);
-
-        // Mostrar el resultado en la página
-        mostrarDetalle(detalle, "contenedor-detalle-medicamento");
-    } else {
-        alert("Por favor, ingresa un ID válido.");
-    }
-});
-function mostrarDetalle(detalle, contenedorId) {
-    const contenedor = document.getElementById(contenedorId);
-    contenedor.innerHTML = ""; // Limpia el contenido anterior
-
-    if (!detalle) {
-        contenedor.textContent = "No se encontraron datos.";
-        return;
-    }
-
-    // Crear un elemento para mostrar el detalle en formato JSON
-    const item = document.createElement("pre");
-    item.textContent = JSON.stringify(detalle, null, 2); // Formatear el JSON
-    contenedor.appendChild(item);
-}
-
+  }
+  
+// Llamar a la función para obtener medicamentos
+obtenerMedicamentos();
