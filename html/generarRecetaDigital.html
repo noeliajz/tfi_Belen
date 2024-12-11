@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comic+Neue:wght@300&family=Dosis:wght@500&family=Exo:wght@300&family=Lato:wght@300&family=Lobster&display=swap" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui.css" rel="stylesheet">
 </head>
 
 <body class="fuente-body">
@@ -67,10 +67,15 @@
         
                     </form>
                     <form>
-                        <input name="search" id="idInputNombreComercial" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre generico" aria-label="Search">
-                        <input name="search" id="idInputNombreGenerico" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre comercial" aria-label="Search">
+                        <input name="search" id="codigo" class="form-control me-2 m-4" type="text" placeholder="Ingresar codigo del medicamento" aria-label="Search">
+
+                      <input name="search" id="idInputNombreComercial" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre generico" aria-label="Search">
+                        <input name="search" id="idInputNombreGenerico" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre comercial" aria-label="Search"> -->
                         <button type="button" id="buttonBuscarNombres" class="btn btn-primary mb-3">Buscar</button>
-                        <button type="button" id="buttonNuevaReceta" class="btn btn-primary mb-3">Nueva receta</button>
+                    
+                            <button type="button" id="buttonBuscarMedicamento" class="btn btn-primary mb-3">Buscar medicamento</button>
+    
+                            <button type="button" id="buttonNuevaReceta" class="btn btn-primary mb-3">Nueva receta</button>
 
                     </form>
                     <div id="divMedicamentos" class="col-sm-12 col-md-6 col-lg-5 d-flex " ></div><!-- muestra el medicamento buscado -->
@@ -114,7 +119,14 @@
 <script src="../js/jspdf.min.js"></script>
 <script type="module" src="/js/controladorGenerarReceta.js"></script>
 
-    <script src="https://kit.fontawesome.com/b629b846fa.js" crossorigin="anonymous"></script>
+   
+<script src="https://kit.fontawesome.com/b629b846fa.js" crossorigin="anonymous"></script>
+
+<div id="swagger-ui"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui-bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 </body>
 </html>
 
