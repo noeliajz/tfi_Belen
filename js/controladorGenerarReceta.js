@@ -102,7 +102,7 @@ function mostrarMedicoEnCard(medico) {
         </div>`;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
     const buttonNuevaReceta = document.getElementById('buttonNuevaReceta');
     const buttonBuscarMedico = document.getElementById('buttonBuscarMedico');
     const inputDescripcion = document.getElementById('idInputNuevoDescripcion');
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function agregarReceta() {
-        const descripcion = inputDescripcion.value.trim();
+        const descripcion2 = inputDescripcion.value.trim();
         const dosis = inputDosis.value.trim();
         const nombreGenerico = inputNombreGenerico.value.trim();
         const nombreComercial = inputNombreComercial.value.trim();
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pacienteId = 0;  // Puedes obtener esto del formulario o de otro input.
         const pacienteSeleccionado = pacientes[pacienteId];
     
-        if (!descripcion || !dosis || !nombreGenerico || !nombreComercial || !matriculaMedico) {
+        if (!descripcion2 || !dosis || !nombreGenerico || !nombreComercial || !matriculaMedico) {
             alert('Por favor, complete todos los campos.');
             return;
         }
@@ -156,11 +156,68 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     
-        const nuevaReceta = new RecetaDigital(fechaHora, dosis, 'pendiente', medicamentoEncontrado, medicoEncontrado, descripcion, null, pacienteSeleccionado);
+        const nuevaReceta = new RecetaDigital(fechaHora, dosis, 'pendiente', medicamentoEncontrado, medicoEncontrado, descripcion2, null, pacienteSeleccionado);
         recetaDigital.push(nuevaReceta);
         renderizarRecetas();
         alert('Receta agregada exitosamente.');
     }
     
-});
+}); */
 
+document.addEventListener('DOMContentLoaded', () => {
+  const buttonNuevaReceta = document.getElementById('buttonNuevaReceta');
+  const buttonBuscarMedico = document.getElementById('buttonBuscarMedico');
+  const inputDescripcion = document.getElementById('idInputNuevoDescripcion');
+  const inputDosis = document.getElementById('idInputNuevoDosis');
+  const inputNombreGenerico = document.getElementById('idInputNombreGenerico');
+  const inputNombreComercial = document.getElementById('idInputNombreComercial');
+  const idInputBuscarMedico = document.getElementById('idInputBuscarMedico');
+
+  buttonNuevaReceta.addEventListener('click', agregarReceta);
+  buttonBuscarMedico.addEventListener('click', () => {
+      const matricula = idInputBuscarMedico.value.trim();
+      const medico = buscarMedicoPorMatricula(matricula);
+      if (medico) {
+          mostrarMedicoEnCard(medico);
+      } else {
+          document.getElementById('divMedicos').innerHTML = `<p>Médico no encontrado.</p>`;
+      }
+  });
+
+  function agregarReceta() {
+      const descripcion2 = inputDescripcion.value.trim();
+      const dosis = inputDosis.value.trim();
+      const nombreGenerico = inputNombreGenerico.value.trim();
+      const nombreComercial = inputNombreComercial.value.trim();
+      const matriculaMedico = idInputBuscarMedico.value.trim();
+      const fechaHora = new Date().toLocaleString();
+      
+      // Simular selección de paciente por ID (puede cambiarse según la lógica del formulario)
+      const pacienteId = 0;  // Puedes obtener esto del formulario o de otro input.
+      const pacienteSeleccionado = pacientes[pacienteId];
+  
+      if (!descripcion2 || !dosis || !nombreGenerico || !nombreComercial || !matriculaMedico) {
+          alert('Por favor, complete todos los campos.');
+          return;
+      }
+
+      // Crear un medicamento con los valores ingresados sin buscarlo
+      const medicamentoNuevo = new Medicamento(nombreComercial, nombreGenerico);
+  
+      const medicoEncontrado = buscarMedicoPorMatricula(matriculaMedico);
+      if (!medicoEncontrado) {
+          alert('Médico no encontrado en la base de datos.');
+          return;
+      }
+  
+      if (!pacienteSeleccionado) {
+          alert('Paciente no encontrado.');
+          return;
+      }
+  
+      const nuevaReceta = new RecetaDigital(fechaHora, dosis, 'pendiente', medicamentoNuevo, medicoEncontrado, descripcion2, null, pacienteSeleccionado);
+      recetaDigital.push(nuevaReceta);
+      renderizarRecetas();
+      alert('Receta agregada exitosamente.');
+  }
+});

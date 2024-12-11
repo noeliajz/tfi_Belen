@@ -9,5 +9,14 @@
   },
   "scripts": {
     "test": "cucumber-js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "http-proxy-middleware": "^3.0.3",
+    "node-fetch": "^3.3.2",
+    "swagger-ui": "^5.18.2",
+    "swagger-ui-express": "^5.0.1"
   }
 }

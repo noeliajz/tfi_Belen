@@ -44,10 +44,7 @@ const medicamentos = [
 
 export { Medicamento, medicamentos };
 
-// Archivo: controladorGenerarReceta.js
 
-/* import { Medicamento, medicamentos } from './Medicamento.js';
- */
 document.addEventListener('DOMContentLoaded', () => {
   const buttonBuscarNombres = document.getElementById('buttonBuscarNombres');
   const inputNombreGenerico = document.getElementById('idInputNombreGenerico');
