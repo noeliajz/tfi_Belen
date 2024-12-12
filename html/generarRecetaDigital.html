@@ -67,19 +67,18 @@
         
                     </form>
                     <form>
-                        <input name="search" id="codigo" class="form-control me-2 m-4" type="text" placeholder="Ingresar codigo del medicamento" aria-label="Search">
+                        <input name="search" id="codigo" class="form-control me-2 m-4" type="text" placeholder="Ingresar medicamento" aria-label="Search">
 
-                      <input name="search" id="idInputNombreComercial" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre generico" aria-label="Search">
-                        <input name="search" id="idInputNombreGenerico" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre comercial" aria-label="Search"> -->
-                        <button type="button" id="buttonBuscarNombres" class="btn btn-primary mb-3">Buscar</button>
-                    
-                            <button type="button" id="buttonBuscarMedicamento" class="btn btn-primary mb-3">Buscar medicamento</button>
+                      <!-- <input name="search" id="idInputNombreComercial" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre generico" aria-label="Search">
+                        <input name="search" id="idInputNombreGenerico" class="form-control me-2 m-4" type="text" placeholder="Ingresar nombre comercial" aria-label="Search"> --> -->
+<!--                         <button type="button" id="buttonBuscarNombres" class="btn btn-primary mb-3">Buscar</button>
+ -->                    
+                            <button type="button" onclick="obtenerMedicamentos()" id="buttonBuscarMedicamento" class="btn btn-primary mb-3">Obtener medicamento</button>
     
                             <button type="button" id="buttonNuevaReceta" class="btn btn-primary mb-3">Nueva receta</button>
 
                     </form>
-                    <div id="divMedicamentos" class="col-sm-12 col-md-6 col-lg-5 d-flex " ></div><!-- muestra el medicamento buscado -->
-
+                    <div id="medicamentos" class="col-sm-12 col-md-6 col-lg-5 d-flex flex-column" ></div><!-- muestra el medicamento buscado -->
                 </div>
 
                 <!-- Columna derecha: divCardsFecha -->
@@ -125,6 +124,112 @@
 <div id="swagger-ui"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui-bundle.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<!-- <script>
+    // URL base de la API
+    const baseURL = 'https://istp1service.azurewebsites.net/api/servicio-salud/medicamentos/todos';
+
+    // Función para obtener medicamentos (aca el profe agrego el promt de lo que me)
+    async function obtenerMedicamentos() {
+        fetch('https://istp1service.azurewebsites.net/api/servicio-salud/medicamentos/todos?pagina=1&limite=15', {
+  method: 'GET',
+  headers: {
+    'accept': '*/*'
+  }
+})
+.then(response => response.json())
+.then(data => {
+  console.log(data);
+})
+.catch(error => {
+  console.error('Error:', error);
+});
+
+    }
+
+    // Función para mostrar medicamentos en el HTML
+    function mostrarMedicamentos(medicamentos) {
+      const medicamentosDiv = document.getElementById('medicamentos');
+      if (medicamentos && medicamentos.length > 0) {
+        medicamentosDiv.innerHTML = ''; // Limpiar mensaje de carga
+
+        medicamentos.forEach(medicamento => {
+          const div = document.createElement('div');
+          div.classList.add('medicamento');
+          div.innerHTML = `
+            <strong>${medicamento.nombre}</strong><br>
+            <em>${medicamento.descripcion}</em><br>
+            <small>Código: ${medicamento.codigo}</small>
+          `;
+          medicamentosDiv.appendChild(div);
+        });
+      } else {
+        medicamentosDiv.innerHTML = '<p>No se encontraron medicamentos.</p>';
+      }
+    }
+  </script> -->
+  <script>
+    // URL base de la API
+    const baseURL = 'https://istp1service.azurewebsites.net/api/servicio-salud/medicamentos/todos?pagina=1&limite=15';
+
+    // Función para obtener medicamentos
+    async function obtenerMedicamentos() {
+        try {
+            const response = await fetch(baseURL, {
+                method: 'GET',
+                headers: {
+                    'accept': '*/*'
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data); // Muestra los datos en la consola para confirmar su estructura
+
+                // Revisa si la API devuelve directamente un array o un objeto con medicamentos
+                const medicamentos = data.medicamentos || data; // Ajusta según la estructura real
+                mostrarMedicamentos(medicamentos); // Llama a la función para mostrar medicamentos
+            } else {
+                console.error('Error al obtener medicamentos:', response.statusText);
+                document.getElementById('medicamentos').innerHTML = '<p>Error al cargar los medicamentos.</p>';
+            }
+        } catch (error) {
+            console.error('Error de red:', error);
+            document.getElementById('medicamentos').innerHTML = '<p>Error al conectar con el servidor.</p>';
+        }
+    }
+
+    // Función para mostrar medicamentos en el HTML
+    
+    function mostrarMedicamentos(medicamentos) {
+    const medicamentosDiv = document.getElementById('medicamentos');
+    medicamentosDiv.innerHTML = ''; // Limpiar contenido anterior
+
+    // Verifica si se obtuvieron medicamentos
+    if (medicamentos && medicamentos.length > 0) {
+        medicamentos.forEach(medicamento => {
+            const div = document.createElement('div');
+             /*div.classList.add('card', 'mb-3'); // Usa clases de Bootstrap para diseño de cards
+            div.style.width = '18rem'; */
+            div.innerHTML = `
+               <div class="card m-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Nombre: ${medicamento.nombre || 'Sin Nombre'}</h5>
+                    <p class="card-text">Descripción: ${medicamento.descripcion || 'Sin Descripción'}</p>
+                    <p class="card-text"><small class="text-muted">Código: ${medicamento.codigo || 'N/A'}</small></p>
+                </div> 
+                </div>
+                
+            `;
+            medicamentosDiv.appendChild(div);
+        });
+    } else {
+        medicamentosDiv.innerHTML = '<p>No se encontraron medicamentos.</p>';
+    }
+}
+
+</script>
 
 
 </body>
